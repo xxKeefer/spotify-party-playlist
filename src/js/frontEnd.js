@@ -1,4 +1,5 @@
-import { data } from './apiActions.js'
+import apiData from './apiActions.js'
+let playlistData = async () =>{return await apiData()}
 
 // global var of number of user inputs on page
 var userCount = 3
@@ -11,7 +12,8 @@ addUserIdButton.addEventListener('click', () => {
 })
 
 let generatePlaylistButton = document.getElementById('generatePlaylistButton')
-generatePlaylistButton.addEventListener('click', () => {generatePlaylist(data)})
+// generatePlaylistButton.addEventListener('click', () => {generatePlaylist(playlistData)})
+generatePlaylistButton.addEventListener('click', generatePlaylist)
 
 let logoImg = document.getElementById('logo')
 let logoWordsImg = document.getElementById('logo-words')
@@ -67,7 +69,7 @@ function generateList(data) {
     let text = document.createElement('p')
     text.classList.add('col-10')
     text.style.display = 'inline-block'
-    text.innerHTML = `<strong>${element.artist}:</strong> ${element.track}`
+    text.innerHTML = `<strong>${element.artist}:</strong> ${element.name}`
     text.style.margin = 0
     
     item.appendChild(img)
@@ -77,7 +79,8 @@ function generateList(data) {
   });
 }
 
-function generatePlaylist() {
+async function generatePlaylist() {
+
 
   let timeout = 3000
   // clear the playlist that's there
@@ -90,16 +93,17 @@ function generatePlaylist() {
   // hide the home page
   // show the loading gif
   // generate the playlist from the array
+
+  let data = await playlistData()
   generateList(data)
+
   hideElement('playlist-cont')
   hideElement('home-page-cont')
-  showElement('loadingPlaylistGif')
   showElement('loading-cont')
 
   setTimeout(() => {
     document.getElementById('right-cont-header').textContent = "Success!!"
     document.getElementById('right-cont-sub-header').textContent = ""
-    hideElement('loadingPlaylistGif')
     hideElement('loading-cont')
     showElement('playlist-cont')
   }, timeout);
