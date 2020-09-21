@@ -129,7 +129,7 @@ async function generatePlaylist() {
 
   // set the headers
   document.getElementById('right-cont-header').textContent = "Getting Your Playlist"
-  document.getElementById('right-cont-sub-header').textContent = ""
+  document.getElementById('right-cont-sub-header').textContent = "Bare with us, lot's of background things happening."
   // the playlist container gets hidden because I think when it is appended it will show the list
   // hide the home page
   // show the loading gif
@@ -144,10 +144,11 @@ async function generatePlaylist() {
 
     if (generateList(data)) {
       document.getElementById('right-cont-header').textContent = "Success!!"
-      document.getElementById('right-cont-sub-header').textContent = ""
+      document.getElementById('right-cont-sub-header').textContent = "Here's your banger playlist!"
       showElement('playlist-cont')
     } else {
       document.getElementById('right-cont-header').textContent = "Uh Oh!"
+      document.getElementById('right-cont-sub-header').textContent = "We didn't find any matching songs :("
       showElement('playlist-cont')
       document.getElementById('playlist-cont').style.height = "auto"
       showElement('not-found')
