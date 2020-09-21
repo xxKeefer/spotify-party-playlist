@@ -11,7 +11,7 @@ export function getUserInputs() {
 
 
 export default async () => {
-  let userArray = await getUserInputs();
+  let userArray = getUserInputs();
   let apiCalls = [];
 
   try {
