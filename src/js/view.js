@@ -51,41 +51,76 @@ function removeUserInput(num) {
 }
 
 
+function filterLists(dataArray) {
+
+  let smallestArr = dataArray.reduce((prev, next) => prev.length > next.length ? next : prev)
+
+  const filteredArray = smallestArr.filter((el) => {
+
+    for (let i = 0; i < dataArray.length; i++) {
+      // loop the the dataArray, and if the current element it's looking at is the smallest array, skip it
+      // otherwise filter through the remaining elements in the dataArray
+      if (dataArray[i] === smallestArr) {
+        continue
+      } 
+      
+      else {
+        return dataArray[i].some((f) => {
+          return f.name === el.name && f.artist === el.artist;
+        });
+      }
+    }
+  });
+
+  return filteredArray
+}
+
 
 function generateList(dataArray) {
   let list = document.getElementById('playlist-list')
 
-  dataArray.forEach(data => {
-    data.forEach(element => {
-      let item = document.createElement('li')
-      item.classList.add('list-group-item', 'row')
-      
-      let img = document.createElement('img')
-      img.style = "width: 9%;"
-      img.classList.add('col-2')
-      img.style.display = 'inline-block'
-      img.src = 'img/music_note.png'
-      img.alt = ""
-  
-      let text = document.createElement('p')
-      text.classList.add('col-10')
-      text.style.display = 'inline-block'
-      text.innerHTML = `<strong>${element.artist}:</strong> ${element.name}`
-      text.style.margin = 0
-      
-      item.appendChild(img)
-      item.appendChild(text)
-  
-      list.appendChild(item)
-    });
+  let data = filterLists(dataArray)
+
+  if (data.length < 1) {
+    let item = document.createElement('li')
+    item.classList.add('list-group-item', 'row')
+    item.textContent = "Sorry no similar songs were found."
+    list.appendChild(item)
+    return false
+  }
+
+  hideElement('not-found')
+
+  data.forEach(element => {
+    let item = document.createElement('li')
+    item.classList.add('list-group-item', 'row')
+    
+    let img = document.createElement('img')
+    img.style = "width: 9%;"
+    img.classList.add('col-2')
+    img.style.display = 'inline-block'
+    img.src = 'img/music_note.png'
+    img.alt = ""
+
+    let text = document.createElement('p')
+    text.classList.add('col-10')
+    text.style.display = 'inline-block'
+    text.innerHTML = `<strong>${element.artist}:</strong> ${element.name}`
+    text.style.margin = 0
+    
+    item.appendChild(img)
+    item.appendChild(text)
+
+    list.appendChild(item)
   });
 
+  return true
 
 }
 
 async function generatePlaylist() {
 
-  let timeout = 500
+  let timeout = 100
   // clear the playlist that's there
   document.getElementById('playlist-list').innerHTML = ''
 
@@ -101,13 +136,23 @@ async function generatePlaylist() {
   showElement('loading-cont')
 
   let data = await playlistData()
-  generateList(data)
+  
+
 
   setTimeout(() => {
-    document.getElementById('right-cont-header').textContent = "Success!!"
-    document.getElementById('right-cont-sub-header').textContent = ""
+
+    if (generateList(data)) {
+      document.getElementById('right-cont-header').textContent = "Success!!"
+      document.getElementById('right-cont-sub-header').textContent = ""
+      showElement('playlist-cont')
+    } else {
+      document.getElementById('right-cont-header').textContent = "Uh Oh!"
+      showElement('playlist-cont')
+      document.getElementById('playlist-cont').style.height = "auto"
+      showElement('not-found')
+    }
+
     hideElement('loading-cont')
-    showElement('playlist-cont')
   }, timeout);
 
 }
