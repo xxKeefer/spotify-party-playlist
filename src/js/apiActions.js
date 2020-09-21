@@ -7,7 +7,7 @@ const getDataFromApi = async () => {
     let playlistUrl = await getPlaylistId(inputData.value);
     let playlistItems = await getPlaylistItems(playlistUrl);
     console.log({ playlistItems });
-    let stringTracks;
+    let stringTracks = "";
     for (track of playlistItems) {
       stringTracks += `${track.track.name} by ${track.track.artists[0].name} has score of ${track.track.popularity}, `;
     }
