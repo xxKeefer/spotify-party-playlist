@@ -82,11 +82,11 @@ function generatePlaylist() {
 
 
 function showElement(id) {
-  document.getElementById(id).style.display = "block"
+  document.getElementById(id).classList.remove('d-none')
 }
 
 function hideElement(id) {
-  document.getElementById(id).style.display = "none"
+  document.getElementById(id).classList.add('d-none')
 }
 
 
