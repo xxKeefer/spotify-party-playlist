@@ -53,6 +53,12 @@ body .footer .container .footer-social-icons {
   width: 100%;
 }
 
+.container .wrapper #left-cont #form-cont #input-cont .remove-user-input {
+  cursor: pointer;
+  -webkit-filter: invert(21%) sepia(87%) saturate(6870%) hue-rotate(357deg) brightness(105%) contrast(117%);
+          filter: invert(21%) sepia(87%) saturate(6870%) hue-rotate(357deg) brightness(105%) contrast(117%);
+}
+
 .container .wrapper #right-cont #loadingPlaylistGif {
   width: 10%;
 }

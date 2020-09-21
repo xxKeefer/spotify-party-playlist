@@ -50,6 +50,10 @@ body {
         // height: 50%;
         #input-cont {
           width: 100%;
+          .remove-user-input {
+            cursor: pointer;
+            filter: invert(21%) sepia(87%) saturate(6870%) hue-rotate(357deg) brightness(105%) contrast(117%);
+          }
         }
       }
     }
