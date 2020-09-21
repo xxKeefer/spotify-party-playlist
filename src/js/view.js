@@ -1,4 +1,4 @@
-import apiData from './apiActions.js'
+import apiData from './controller.js'
 let playlistData = async () =>{return await apiData()}
 
 // global var of number of user inputs on page
@@ -38,7 +38,7 @@ function addUserIdInput(num) {
   let inputCont = document.getElementById('input-cont')
 
   let input = document.createElement('input')
-  input.classList.add('form-control', 'my-2', 'col-10')
+  input.classList.add('form-control', 'my-2', 'col-10', 'user-input')
   img.setAttribute('id', `user-input-${num}`)
   input.placeholder = "User ID"
 
@@ -48,6 +48,13 @@ function addUserIdInput(num) {
 
 function removeUserInput(num) {
   document.getElementById(`user-cont-${num}`).remove()
+}
+
+
+function getUserInputs() {
+  let inputs = document.querySelectorAll(".user-input");
+  let arr = Array.from(inputs);
+  return arr.map((el) => el.value);
 }
 
 
@@ -80,7 +87,6 @@ function generateList(data) {
 }
 
 async function generatePlaylist() {
-
 
   let timeout = 3000
   // clear the playlist that's there
