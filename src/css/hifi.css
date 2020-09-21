@@ -1,0 +1,669 @@
+* {
+  box-sizing: border-box;
+}
+:root {
+  --body: #333;
+  --body-shimmer: rgba(255,255,255,0.1);
+  --stroke: #262626;
+  --button: #999;
+}
+/* body {
+  --saturation: 40;
+  --hue: 170;
+  background: hsl(var(--hue), calc(var(--saturation, 40) * 1%), 30%);
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+          justify-content: center;
+  min-height: 100vh;
+} */
+.note path {
+  stroke: hsl(var(--hue, 0), 60%, 60%);
+}
+.note circle {
+  fill: hsl(var(--hue, 0), 60%, 60%);
+}
+.dot {
+  fill: #7a1f1f;
+}
+.hifi {
+  height: 40vmin;
+  border-bottom: 4px solid hsl(var(--hue), calc(var(--saturation, 40) * 1%), 25%);
+}
+.hifi__body {
+  fill: var(--body);
+}
+.hifi__shimmer {
+  fill: var(--body-shimmer);
+}
+.shimmer {
+  fill: var(--body-shimmer);
+}
+.stroked {
+  stroke: var(--stroke);
+}
+.button {
+  fill: var(--button);
+}
+.lcd__panel {
+  fill: #b35e4d;
+}
+.tweeter__outer {
+  fill: #313131;
+  stroke: var(--button);
+}
+.tweeter__inner {
+  fill: var(--body-shimmer);
+}
+@-webkit-keyframes party {
+  0% {
+    background: hsl(0, 40%, 40%);
+  }
+  1% {
+    background: hsl(3.6, 40%, 40%);
+  }
+  2% {
+    background: hsl(7.2, 40%, 40%);
+  }
+  3% {
+    background: hsl(10.8, 40%, 40%);
+  }
+  4% {
+    background: hsl(14.4, 40%, 40%);
+  }
+  5% {
+    background: hsl(18, 40%, 40%);
+  }
+  6% {
+    background: hsl(21.6, 40%, 40%);
+  }
+  7% {
+    background: hsl(25.2, 40%, 40%);
+  }
+  8% {
+    background: hsl(28.8, 40%, 40%);
+  }
+  9% {
+    background: hsl(32.4, 40%, 40%);
+  }
+  10% {
+    background: hsl(36, 40%, 40%);
+  }
+  11% {
+    background: hsl(39.6, 40%, 40%);
+  }
+  12% {
+    background: hsl(43.2, 40%, 40%);
+  }
+  13% {
+    background: hsl(46.800000000000004, 40%, 40%);
+  }
+  14% {
+    background: hsl(50.4, 40%, 40%);
+  }
+  15% {
+    background: hsl(54, 40%, 40%);
+  }
+  16% {
+    background: hsl(57.6, 40%, 40%);
+  }
+  17% {
+    background: hsl(61.2, 40%, 40%);
+  }
+  18% {
+    background: hsl(64.8, 40%, 40%);
+  }
+  19% {
+    background: hsl(68.4, 40%, 40%);
+  }
+  20% {
+    background: hsl(72, 40%, 40%);
+  }
+  21% {
+    background: hsl(75.60000000000001, 40%, 40%);
+  }
+  22% {
+    background: hsl(79.2, 40%, 40%);
+  }
+  23% {
+    background: hsl(82.8, 40%, 40%);
+  }
+  24% {
+    background: hsl(86.4, 40%, 40%);
+  }
+  25% {
+    background: hsl(90, 40%, 40%);
+  }
+  26% {
+    background: hsl(93.60000000000001, 40%, 40%);
+  }
+  27% {
+    background: hsl(97.2, 40%, 40%);
+  }
+  28% {
+    background: hsl(100.8, 40%, 40%);
+  }
+  29% {
+    background: hsl(104.4, 40%, 40%);
+  }
+  30% {
+    background: hsl(108, 40%, 40%);
+  }
+  31% {
+    background: hsl(111.60000000000001, 40%, 40%);
+  }
+  32% {
+    background: hsl(115.2, 40%, 40%);
+  }
+  33% {
+    background: hsl(118.8, 40%, 40%);
+  }
+  34% {
+    background: hsl(122.4, 40%, 40%);
+  }
+  35% {
+    background: hsl(126, 40%, 40%);
+  }
+  36% {
+    background: hsl(129.6, 40%, 40%);
+  }
+  37% {
+    background: hsl(133.20000000000002, 40%, 40%);
+  }
+  38% {
+    background: hsl(136.8, 40%, 40%);
+  }
+  39% {
+    background: hsl(140.4, 40%, 40%);
+  }
+  40% {
+    background: hsl(144, 40%, 40%);
+  }
+  41% {
+    background: hsl(147.6, 40%, 40%);
+  }
+  42% {
+    background: hsl(151.20000000000002, 40%, 40%);
+  }
+  43% {
+    background: hsl(154.8, 40%, 40%);
+  }
+  44% {
+    background: hsl(158.4, 40%, 40%);
+  }
+  45% {
+    background: hsl(162, 40%, 40%);
+  }
+  46% {
+    background: hsl(165.6, 40%, 40%);
+  }
+  47% {
+    background: hsl(169.20000000000002, 40%, 40%);
+  }
+  48% {
+    background: hsl(172.8, 40%, 40%);
+  }
+  49% {
+    background: hsl(176.4, 40%, 40%);
+  }
+  50% {
+    background: hsl(180, 40%, 40%);
+  }
+  51% {
+    background: hsl(183.6, 40%, 40%);
+  }
+  52% {
+    background: hsl(187.20000000000002, 40%, 40%);
+  }
+  53% {
+    background: hsl(190.8, 40%, 40%);
+  }
+  54% {
+    background: hsl(194.4, 40%, 40%);
+  }
+  55% {
+    background: hsl(198, 40%, 40%);
+  }
+  56% {
+    background: hsl(201.6, 40%, 40%);
+  }
+  57% {
+    background: hsl(205.20000000000002, 40%, 40%);
+  }
+  58% {
+    background: hsl(208.8, 40%, 40%);
+  }
+  59% {
+    background: hsl(212.4, 40%, 40%);
+  }
+  60% {
+    background: hsl(216, 40%, 40%);
+  }
+  61% {
+    background: hsl(219.6, 40%, 40%);
+  }
+  62% {
+    background: hsl(223.20000000000002, 40%, 40%);
+  }
+  63% {
+    background: hsl(226.8, 40%, 40%);
+  }
+  64% {
+    background: hsl(230.4, 40%, 40%);
+  }
+  65% {
+    background: hsl(234, 40%, 40%);
+  }
+  66% {
+    background: hsl(237.6, 40%, 40%);
+  }
+  67% {
+    background: hsl(241.20000000000002, 40%, 40%);
+  }
+  68% {
+    background: hsl(244.8, 40%, 40%);
+  }
+  69% {
+    background: hsl(248.4, 40%, 40%);
+  }
+  70% {
+    background: hsl(252, 40%, 40%);
+  }
+  71% {
+    background: hsl(255.6, 40%, 40%);
+  }
+  72% {
+    background: hsl(259.2, 40%, 40%);
+  }
+  73% {
+    background: hsl(262.8, 40%, 40%);
+  }
+  74% {
+    background: hsl(266.40000000000003, 40%, 40%);
+  }
+  75% {
+    background: hsl(270, 40%, 40%);
+  }
+  76% {
+    background: hsl(273.6, 40%, 40%);
+  }
+  77% {
+    background: hsl(277.2, 40%, 40%);
+  }
+  78% {
+    background: hsl(280.8, 40%, 40%);
+  }
+  79% {
+    background: hsl(284.40000000000003, 40%, 40%);
+  }
+  80% {
+    background: hsl(288, 40%, 40%);
+  }
+  81% {
+    background: hsl(291.6, 40%, 40%);
+  }
+  82% {
+    background: hsl(295.2, 40%, 40%);
+  }
+  83% {
+    background: hsl(298.8, 40%, 40%);
+  }
+  84% {
+    background: hsl(302.40000000000003, 40%, 40%);
+  }
+  85% {
+    background: hsl(306, 40%, 40%);
+  }
+  86% {
+    background: hsl(309.6, 40%, 40%);
+  }
+  87% {
+    background: hsl(313.2, 40%, 40%);
+  }
+  88% {
+    background: hsl(316.8, 40%, 40%);
+  }
+  89% {
+    background: hsl(320.40000000000003, 40%, 40%);
+  }
+  90% {
+    background: hsl(324, 40%, 40%);
+  }
+  91% {
+    background: hsl(327.6, 40%, 40%);
+  }
+  92% {
+    background: hsl(331.2, 40%, 40%);
+  }
+  93% {
+    background: hsl(334.8, 40%, 40%);
+  }
+  94% {
+    background: hsl(338.40000000000003, 40%, 40%);
+  }
+  95% {
+    background: hsl(342, 40%, 40%);
+  }
+  96% {
+    background: hsl(345.6, 40%, 40%);
+  }
+  97% {
+    background: hsl(349.2, 40%, 40%);
+  }
+  98% {
+    background: hsl(352.8, 40%, 40%);
+  }
+  99% {
+    background: hsl(356.40000000000003, 40%, 40%);
+  }
+  100% {
+    background: hsl(360, 40%, 40%);
+  }
+}
+@keyframes party {
+  0% {
+    background: hsl(0, 40%, 40%);
+  }
+  1% {
+    background: hsl(3.6, 40%, 40%);
+  }
+  2% {
+    background: hsl(7.2, 40%, 40%);
+  }
+  3% {
+    background: hsl(10.8, 40%, 40%);
+  }
+  4% {
+    background: hsl(14.4, 40%, 40%);
+  }
+  5% {
+    background: hsl(18, 40%, 40%);
+  }
+  6% {
+    background: hsl(21.6, 40%, 40%);
+  }
+  7% {
+    background: hsl(25.2, 40%, 40%);
+  }
+  8% {
+    background: hsl(28.8, 40%, 40%);
+  }
+  9% {
+    background: hsl(32.4, 40%, 40%);
+  }
+  10% {
+    background: hsl(36, 40%, 40%);
+  }
+  11% {
+    background: hsl(39.6, 40%, 40%);
+  }
+  12% {
+    background: hsl(43.2, 40%, 40%);
+  }
+  13% {
+    background: hsl(46.800000000000004, 40%, 40%);
+  }
+  14% {
+    background: hsl(50.4, 40%, 40%);
+  }
+  15% {
+    background: hsl(54, 40%, 40%);
+  }
+  16% {
+    background: hsl(57.6, 40%, 40%);
+  }
+  17% {
+    background: hsl(61.2, 40%, 40%);
+  }
+  18% {
+    background: hsl(64.8, 40%, 40%);
+  }
+  19% {
+    background: hsl(68.4, 40%, 40%);
+  }
+  20% {
+    background: hsl(72, 40%, 40%);
+  }
+  21% {
+    background: hsl(75.60000000000001, 40%, 40%);
+  }
+  22% {
+    background: hsl(79.2, 40%, 40%);
+  }
+  23% {
+    background: hsl(82.8, 40%, 40%);
+  }
+  24% {
+    background: hsl(86.4, 40%, 40%);
+  }
+  25% {
+    background: hsl(90, 40%, 40%);
+  }
+  26% {
+    background: hsl(93.60000000000001, 40%, 40%);
+  }
+  27% {
+    background: hsl(97.2, 40%, 40%);
+  }
+  28% {
+    background: hsl(100.8, 40%, 40%);
+  }
+  29% {
+    background: hsl(104.4, 40%, 40%);
+  }
+  30% {
+    background: hsl(108, 40%, 40%);
+  }
+  31% {
+    background: hsl(111.60000000000001, 40%, 40%);
+  }
+  32% {
+    background: hsl(115.2, 40%, 40%);
+  }
+  33% {
+    background: hsl(118.8, 40%, 40%);
+  }
+  34% {
+    background: hsl(122.4, 40%, 40%);
+  }
+  35% {
+    background: hsl(126, 40%, 40%);
+  }
+  36% {
+    background: hsl(129.6, 40%, 40%);
+  }
+  37% {
+    background: hsl(133.20000000000002, 40%, 40%);
+  }
+  38% {
+    background: hsl(136.8, 40%, 40%);
+  }
+  39% {
+    background: hsl(140.4, 40%, 40%);
+  }
+  40% {
+    background: hsl(144, 40%, 40%);
+  }
+  41% {
+    background: hsl(147.6, 40%, 40%);
+  }
+  42% {
+    background: hsl(151.20000000000002, 40%, 40%);
+  }
+  43% {
+    background: hsl(154.8, 40%, 40%);
+  }
+  44% {
+    background: hsl(158.4, 40%, 40%);
+  }
+  45% {
+    background: hsl(162, 40%, 40%);
+  }
+  46% {
+    background: hsl(165.6, 40%, 40%);
+  }
+  47% {
+    background: hsl(169.20000000000002, 40%, 40%);
+  }
+  48% {
+    background: hsl(172.8, 40%, 40%);
+  }
+  49% {
+    background: hsl(176.4, 40%, 40%);
+  }
+  50% {
+    background: hsl(180, 40%, 40%);
+  }
+  51% {
+    background: hsl(183.6, 40%, 40%);
+  }
+  52% {
+    background: hsl(187.20000000000002, 40%, 40%);
+  }
+  53% {
+    background: hsl(190.8, 40%, 40%);
+  }
+  54% {
+    background: hsl(194.4, 40%, 40%);
+  }
+  55% {
+    background: hsl(198, 40%, 40%);
+  }
+  56% {
+    background: hsl(201.6, 40%, 40%);
+  }
+  57% {
+    background: hsl(205.20000000000002, 40%, 40%);
+  }
+  58% {
+    background: hsl(208.8, 40%, 40%);
+  }
+  59% {
+    background: hsl(212.4, 40%, 40%);
+  }
+  60% {
+    background: hsl(216, 40%, 40%);
+  }
+  61% {
+    background: hsl(219.6, 40%, 40%);
+  }
+  62% {
+    background: hsl(223.20000000000002, 40%, 40%);
+  }
+  63% {
+    background: hsl(226.8, 40%, 40%);
+  }
+  64% {
+    background: hsl(230.4, 40%, 40%);
+  }
+  65% {
+    background: hsl(234, 40%, 40%);
+  }
+  66% {
+    background: hsl(237.6, 40%, 40%);
+  }
+  67% {
+    background: hsl(241.20000000000002, 40%, 40%);
+  }
+  68% {
+    background: hsl(244.8, 40%, 40%);
+  }
+  69% {
+    background: hsl(248.4, 40%, 40%);
+  }
+  70% {
+    background: hsl(252, 40%, 40%);
+  }
+  71% {
+    background: hsl(255.6, 40%, 40%);
+  }
+  72% {
+    background: hsl(259.2, 40%, 40%);
+  }
+  73% {
+    background: hsl(262.8, 40%, 40%);
+  }
+  74% {
+    background: hsl(266.40000000000003, 40%, 40%);
+  }
+  75% {
+    background: hsl(270, 40%, 40%);
+  }
+  76% {
+    background: hsl(273.6, 40%, 40%);
+  }
+  77% {
+    background: hsl(277.2, 40%, 40%);
+  }
+  78% {
+    background: hsl(280.8, 40%, 40%);
+  }
+  79% {
+    background: hsl(284.40000000000003, 40%, 40%);
+  }
+  80% {
+    background: hsl(288, 40%, 40%);
+  }
+  81% {
+    background: hsl(291.6, 40%, 40%);
+  }
+  82% {
+    background: hsl(295.2, 40%, 40%);
+  }
+  83% {
+    background: hsl(298.8, 40%, 40%);
+  }
+  84% {
+    background: hsl(302.40000000000003, 40%, 40%);
+  }
+  85% {
+    background: hsl(306, 40%, 40%);
+  }
+  86% {
+    background: hsl(309.6, 40%, 40%);
+  }
+  87% {
+    background: hsl(313.2, 40%, 40%);
+  }
+  88% {
+    background: hsl(316.8, 40%, 40%);
+  }
+  89% {
+    background: hsl(320.40000000000003, 40%, 40%);
+  }
+  90% {
+    background: hsl(324, 40%, 40%);
+  }
+  91% {
+    background: hsl(327.6, 40%, 40%);
+  }
+  92% {
+    background: hsl(331.2, 40%, 40%);
+  }
+  93% {
+    background: hsl(334.8, 40%, 40%);
+  }
+  94% {
+    background: hsl(338.40000000000003, 40%, 40%);
+  }
+  95% {
+    background: hsl(342, 40%, 40%);
+  }
+  96% {
+    background: hsl(345.6, 40%, 40%);
+  }
+  97% {
+    background: hsl(349.2, 40%, 40%);
+  }
+  98% {
+    background: hsl(352.8, 40%, 40%);
+  }
+  99% {
+    background: hsl(356.40000000000003, 40%, 40%);
+  }
+  100% {
+    background: hsl(360, 40%, 40%);
+  }
+}

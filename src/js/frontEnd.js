@@ -53,7 +53,6 @@ function removeUserInput(num) {
 function generateList(data) {
   let list = document.getElementById('playlist-list')
 
-  console.log(data);
   data.forEach(element => {
     let item = document.createElement('li')
     item.classList.add('list-group-item', 'row')
@@ -80,7 +79,7 @@ function generateList(data) {
 
 function generatePlaylist() {
 
-  let timeout = 1000
+  let timeout = 3000
   // clear the playlist that's there
   document.getElementById('playlist-list').innerHTML = ''
 
@@ -95,11 +94,13 @@ function generatePlaylist() {
   hideElement('playlist-cont')
   hideElement('home-page-cont')
   showElement('loadingPlaylistGif')
+  showElement('loading-cont')
 
   setTimeout(() => {
     document.getElementById('right-cont-header').textContent = "Success!!"
     document.getElementById('right-cont-sub-header').textContent = ""
     hideElement('loadingPlaylistGif')
+    hideElement('loading-cont')
     showElement('playlist-cont')
   }, timeout);
 
