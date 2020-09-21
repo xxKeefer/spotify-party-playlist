@@ -62,4 +62,8 @@ body .footer .container .footer-social-icons {
 .container .wrapper #right-cont #loadingPlaylistGif {
   width: 10%;
 }
+
+.container .wrapper #right-cont #playlist-cont {
+  height: 95%;
+}
 /*# sourceMappingURL=styles.css.map */

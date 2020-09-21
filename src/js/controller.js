@@ -1,7 +1,17 @@
-function getUserInputs() {
+export function getUserInputs() {
   let inputs = document.querySelectorAll(".user-input");
   let arr = Array.from(inputs);
+  if (!checkEmptyInputFromArr(arr)) {
+    alert("There is an empty input. Please provide at least 2 user IDs.")
+    return false
+  }
   return arr.map((el) => el.value).filter((el) => el !== null);
+}
+
+function checkEmptyInputFromArr(arr) {
+  arr.forEach(element => {
+    return (element.value === '') ? false : true
+  });
 }
 
 export default async () => {
