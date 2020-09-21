@@ -63,11 +63,12 @@ function filterLists(dataArray) {
       // otherwise filter through the remaining elements in the dataArray
       if (dataArray[i] === smallestArr) {
         continue
-      } 
+      }
       
       else {
         return dataArray[i].some((f) => {
-          return f.name === el.name && f.artist === el.artist;
+          // return f.name === el.name && f.artist === el.artist;
+          return f.artist === el.artist;
         });
       }
     }
