@@ -124,5 +124,6 @@ const processApiData = async (userId) => {
     return tracks;
   } catch (e) {
     console.error(e);
+    return e;
   }
 };

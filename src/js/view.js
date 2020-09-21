@@ -1,4 +1,4 @@
-import apiData from './controller.js'
+import apiData from './apiActions.js'
 let playlistData = async () =>{return await apiData()}
 
 // global var of number of user inputs on page

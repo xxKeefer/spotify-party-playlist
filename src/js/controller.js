@@ -1,26 +1,20 @@
-
-
-// export default async (userArr) => {
-//   let dataArr = []
-//   userArr.forEach(person => {
-//     let userData = await processApiData(person);
-//     dataArr.push(userData)
-//     // try {
-//     //   let userData = await processApiData(userId);
-//     //   dataArr.push(userData)
-//     // } catch (e) {
-//     //   console.error(e);
-//     // }
-//   });
-//   return dataArr
-// };
+function getUserInputs() {
+  let inputs = document.querySelectorAll(".user-input");
+  let arr = Array.from(inputs);
+  return arr.map((el) => el.value).filter((el) => el !== null);
+}
 
 export default async () => {
-  const input = document.getElementById('user-input-1')
-    try {
-      return await processApiData(input.value);
-    } catch (e) {
-      console.error(e);
-    }
-};
+  let userArray = await getUserInputs();
+  let apiCalls = [];
 
+  try {
+    userArray.forEach((user) => {
+      apiCalls.push(processApiData(user));
+    });
+    const userDataArray = await Promise.all(apiCalls);
+    return userDataArray;
+  } catch (e) {
+    console.error(e);
+  }
+};
