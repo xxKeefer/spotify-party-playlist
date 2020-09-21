@@ -16,6 +16,12 @@ body .footer .container {
   margin: 0 auto;
 }
 
+body .footer .container .footer-social-icons {
+  width: 5%;
+  -webkit-filter: invert(46%) sepia(12%) saturate(344%) hue-rotate(167deg) brightness(95%) contrast(85%);
+          filter: invert(46%) sepia(12%) saturate(344%) hue-rotate(167deg) brightness(95%) contrast(85%);
+}
+
 * {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
@@ -40,10 +46,17 @@ body .footer .container {
 
 .container .wrapper #left-cont #logo-cont .logo-img {
   width: 45%;
+  cursor: pointer;
 }
 
 .container .wrapper #left-cont #form-cont #input-cont {
   width: 100%;
+}
+
+.container .wrapper #left-cont #form-cont #input-cont .remove-user-input {
+  cursor: pointer;
+  -webkit-filter: invert(21%) sepia(87%) saturate(6870%) hue-rotate(357deg) brightness(105%) contrast(117%);
+          filter: invert(21%) sepia(87%) saturate(6870%) hue-rotate(357deg) brightness(105%) contrast(117%);
 }
 
 .container .wrapper #right-cont #loadingPlaylistGif {

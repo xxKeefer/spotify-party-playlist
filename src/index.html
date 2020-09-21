@@ -1,111 +1,102 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="css/styles.css" />
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/styles.css">
 
-    <!-- Bootstrap CDN --->
-    <link
-      rel="stylesheet"
-      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
-      integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
-      crossorigin="anonymous"
-    />
-    <script
-      defer
-      src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-      integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      defer
-      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
-      integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      defer
-      src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
-      integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
-      crossorigin="anonymous"
-    ></script>
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, shrink-to-fit=no"
-    />
+  <!-- Bootstrap CDN --->
+  <link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css' integrity='sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z' crossorigin='anonymous'>
+  <script defer src='https://code.jquery.com/jquery-3.5.1.slim.min.js' integrity='sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj' crossorigin='anonymous'></script>
+  <script defer src='https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js' integrity='sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN' crossorigin='anonymous'></script>
+  <script defer src='https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js' integrity='sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV' crossorigin='anonymous'></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <!-- FRONT END JS -->
-    <script defer type="module" src="js/frontEnd.js"></script>
-    <script defer type="module" src="js/apiInterface.js"></script>
-    <script defer type="module" src="js/apiActions.js"></script>
+  <!-- FRONT END JS -->
+  <script defer type="module" src="js/frontEnd.js"></script>
+  <script defer type="module" src="js/apiInterface.js"></script>
+  <script defer type="module" src="js/apiActions.js"></script>
 
-    <title>Spotify Party Playlist Maker</title>
-  </head>
-  <body>
-    <div class="container">
+  <title>Spotify Party Playlist Maker</title>
 
-      <div class="wrapper row py-3">
+</head>
+<body>
 
-        <div id="left-cont" class="container col-3">
-          <div id="logo-cont" class="row">
-            <img class="logo-img" src="./img/LOGOx.png" alt="" />
-            <img class="logo-img" src="./img/logo_words.png" alt="" />
-          </div>
 
-          <hr />
+  <div class="container">
 
-          <div id="form-cont" class="row">
-            <div id="input-cont" class="container">
-              <input
-                id="user-input-1"
-                class="form-control my-2"
-                type="text"
-                placeholder="User ID"
-              />
-              <input
-                class="form-control my-2"
-                type="text"
-                placeholder="User ID"
-              />
-            </div>
+    <div class="wrapper row py-3">
 
-            <button
-              id="addUserIdButton"
-              type="button"
-              class="ml-3 btn btn-outline-primary"
-            >
-              Add User
-            </button>
-            <button
-              id="generatePlaylistButton"
-              type="button"
-              class="ml-3 btn btn-primary"
-            >
-              Generate Playlist
-            </button>
-          </div>
+      <!-- LEFT CONTAINER -->
+      <div id="left-cont" class="container col-3">
+
+        <!-- LOGO CONTAINER -->
+        <div id="logo-cont" class="row">
+          <img id="logo" class="logo-img" src="./img/LOGOx.png" alt="">
+          <img id="logo-words" class="logo-img" src="./img/logo_words.png" alt="">
         </div>
 
-        <!-- RIGHT CONTAINER -->
-        <div id="right-cont" class="container col-9">
-          <h2 id="right-cont-header">xxKeefer and Simo_Sultan's Party Playlist Maker</h2>
-
-          <!-- LOADING GIF -->
-          <img id="loadingPlaylistGif" class="d-none my-3 mx-3" src="img/loading.gif" alt="">
+        <hr>
+        
+        <!-- FORM CONTAINER -->
+        <div id="form-cont" class="row">
           
-          <!-- PLAYLIST CONTAINER -->
-          <div id="playlist-cont" class="pt-4 container d-none list-group">
-            <ul id="playlist-list"></ul>
-            <div id="output"></div>
+          <div id="input-cont" class="container">
+
+            <div id="user-cont-1" class="row">
+              <input id="user-input-1" class="form-control my-2 col-10" type="text" placeholder="User ID">
+            </div>
+            <div id="user-cont-2" class="row">
+              <input id="user-input-2" class="form-control my-2 col-10" type="text" placeholder="User ID">
+            </div>
           </div>
 
-          <!-- USER NOT FOUND CONTAINER -->
-          <div id="user-not-found-cont" class="container d-none">
-            <img id="user-not-found-img" class="d-none my-3 mx-3" src="img/user_not_found.jpg" alt="">
+          <button id="addUserIdButton" type="button" class="btn btn-outline-primary">Add User</button>
+          <button id="generatePlaylistButton" type="button" class="ml-3 btn btn-primary">Generate Playlist</button>
+
+        </div>
+
+      </div>
+
+      <!-- RIGHT CONTAINER -->
+      <div id="right-cont" class="container col-9">
+        <h2 id="right-cont-header" class="text-center">xxKeefer & Simo_Sultan's</h2>
+        <h4 id="right-cont-sub-header" class="text-center">Party Playlist Maker for Spotify</h4>
+
+        <!-- HOME PAGE CONTAINER -->
+        <div id="home-page-cont" class="container mt-5 h-auto">
+          <span class="lead">
+            Ever found yourself wanting an auto-generated playlist that you and your mates can play of all the songs you all like at a party? Well, here's your solution!
+            Just plug in your Spotify User IDs and we will generate a playlist for you which you can then just 'follow' the playlist to add to your own (or play it straight from this browser window).
+          </span>
+
+          <div class="container mt-4 row h-auto">
+            <span class="d-block"><strong>Step 1</strong></span>
+            <div class="row">
+              <p class="col d-inline">Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis ipsum amet similique, consequuntur enim quibusdam optio, exercitationem, eos labore id esse sint asperiores saepe pariatur voluptatem inventore fuga facilis porro.</p>
+              <img class="col d-inline" src="img/default.svg" alt="">
+            </div>
+          </div>
+
+          <div class="container mt-4 row h-auto">
+            <span class="d-block"><strong>Step 2</strong></span>
+            <div class="row">
+              <p class="col d-inline">Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis ipsum amet similique, consequuntur enim quibusdam optio, exercitationem, eos labore id esse sint asperiores saepe pariatur voluptatem inventore fuga facilis porro.</p>
+              <img class="col d-inline" src="img/default.svg" alt="">
+            </div>
           </div>
 
         </div>
+
+        <!-- LOADING GIF -->
+        <img id="loadingPlaylistGif" class="d-none my-3 mx-3" src="img/loading.gif" alt="">
+
+        <!-- PLAYLIST CONTAINER -->
+        <div id="playlist-cont" class="pt-4 h-75 overflow-auto container d-none list-group">
+          <ul id="playlist-list"></ul>
+          <div id="output"></div>
+        </div>
+
       </div>
 
     </div>
@@ -120,10 +111,12 @@
 
       <span id="socials" class="text-muted col">
 
-        <p class="font-weight-bold d-inline">Twitter: </p>
+        <!-- <p class="font-weight-bold d-inline">Twitter: </p> -->
+        <img src="img/twitter.svg" class="footer-social-icons alt="">
         <a href="https://twitter.com/simo_sultan" class="d-inline mx-1">@simo_sultan</a>
         <a href="https://twitter.com/xxKeefer" class="d-inline mx-1">@xxKeefer</a>
-        <p class="font-weight-bold d-inline ml-4">GitHub: </p>
+        <!-- <p class="font-weight-bold d-inline ml-4">GitHub: </p> -->
+        <img src="img/github.svg" class="ml-4 footer-social-icons alt="">
         <a href="https://github.com/SimoSultan" class="d-inline mx-1">SimoSultan</a>
         <a href="https://github.com/xxKeefer" class="d-inline mx-1">@xxKeefer</a>
 
