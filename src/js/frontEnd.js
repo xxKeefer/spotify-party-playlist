@@ -1,20 +1,23 @@
 
-// import { showLoadingGif } from './helpers.js'
-
-// HTML ELEMENTS
-let addUserIdButton = document.getElementById('addUserIdButton')
-addUserIdButton.addEventListener('click', addUserIdInput)
-
-let generatePlaylistButton = document.getElementById('generatePlaylistButton')
-generatePlaylistButton.addEventListener('click', generatePlaylist)
-
-
-
 // DATA
 const data = [
   {track: 'Never Gonna Give You Up', artist: 'Rick Astley', album: 'Whenever You Need Somebody', year: '1987'}, 
   {track: 'Underwear Goes Inside the Pants', artist: 'Lazyboy', album: 'Lazyboy TV', year: '2004'}, 
 ]
+
+// HTML ELEMENTS and ONCLICK LISTENERS
+let addUserIdButton = document.getElementById('addUserIdButton')
+addUserIdButton.addEventListener('click', addUserIdInput)
+
+let generatePlaylistButton = document.getElementById('generatePlaylistButton')
+generatePlaylistButton.addEventListener('click', () => {generateList(data)})
+
+let logoImg = document.getElementById('logo')
+let logoWordsImg = document.getElementById('logo-words')
+logoImg.addEventListener('click', showHomePage)
+logoWordsImg.addEventListener('click', showHomePage)
+
+
 
 
 
@@ -27,10 +30,6 @@ function addUserIdInput() {
   input.placeholder = "User ID"
   inputCont.appendChild(input)
 }
-
-// function removeUserIdInput() {
-
-// }
 
 
 
@@ -61,24 +60,40 @@ function generateList(data) {
   });
 }
 
-function generatePlaylist() {
+function generatePlaylist(data) {
 
   let timeout = 2000
+  // clear the playlist that's there
+  document.getElementById('playlist-list').innerHTML = ''
 
+  // set the headers
   document.getElementById('right-cont-header').textContent = "Getting Your Playlist"
-  showElement('loadingPlaylistGif')
+  document.getElementById('right-cont-sub-header').textContent = ""
+  // the playlist container gets hidden because I think when it is appended it will show the list
+  // hide the home page
+  // show the loading gif
+  // generate the playlist from the array
   hideElement('playlist-cont')
+  hideElement('home-page-cont')
+  showElement('loadingPlaylistGif')
   generateList(data)
+
   
   setTimeout(() => {
     document.getElementById('right-cont-header').textContent = "Success!!"
+    document.getElementById('right-cont-sub-header').textContent = ""
     hideElement('loadingPlaylistGif')
     showElement('playlist-cont')
-}, timeout);
+  }, timeout);
+
 }
 
 
 
+function showHomePage() {
+  hideElement('playlist-cont')
+  showElement('home-page-cont')
+}
 
 
 function showElement(id) {
