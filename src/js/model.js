@@ -87,12 +87,12 @@ const getPlaylistItems = async (endpointUrl) => {
     try {
       let raw = await fetch(endpointUrl, requestOptions);
       let res = await raw.json();
-      if (res.next === null) {
-        break;
-      }
       endpointUrl = res.next;
       let newItems = res.items;
       allItems = allItems.concat(newItems);
+      if (res.next === null) {
+        break;
+      }
     } catch (e) {
       console.error(e);
       break;
