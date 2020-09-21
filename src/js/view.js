@@ -1,4 +1,5 @@
 import apiData from './controller.js'
+import { getUserInputs } from './controller.js'
 let playlistData = async () =>{return await apiData()}
 
 // global var of number of user inputs on page
@@ -120,6 +121,8 @@ function generateList(dataArray) {
 
 async function generatePlaylist() {
 
+  if (!getUserInputs()) return
+
   let timeout = 100
   // clear the playlist that's there
   document.getElementById('playlist-list').innerHTML = ''
@@ -136,8 +139,6 @@ async function generatePlaylist() {
   showElement('loading-cont')
 
   let data = await playlistData()
-  
-
 
   setTimeout(() => {
 
