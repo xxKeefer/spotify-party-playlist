@@ -1,0 +1,36 @@
+body {
+  height: 100vh !important;
+  margin: 0;
+  padding: 0;
+}
+
+* {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+.container {
+  height: 100%;
+}
+
+.container .wrapper {
+  height: 100%;
+}
+
+.container .wrapper #left-cont {
+  height: 100%;
+  border-right: 1px solid lightgray;
+}
+
+.container .wrapper #left-cont #logo-cont {
+  height: 10%;
+}
+
+.container .wrapper #left-cont #logo-cont .logo-img {
+  width: 45%;
+}
+
+.container .wrapper #left-cont #form-cont #input-cont {
+  width: 100%;
+}
+/*# sourceMappingURL=styles.css.map */
