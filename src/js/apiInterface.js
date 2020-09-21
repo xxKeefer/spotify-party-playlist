@@ -34,42 +34,42 @@ const getAuthToken = async () => {
 
 // takes a user id and playlist name and returns the playlist id
 // optional: limit and offset if target playlist is deeper in list
-const getPlaylistId = async (
+export const getPlaylistId = async (
   userId,
   playlistName = "publicLiked",
   limit = 50,
   offset = 0
-) => {
-  let endpointUrl = `https://api.spotify.com/v1/users/${userId}/playlists?limit=${limit}&offset=${offset}`;
-  let auth = await getAuthToken();
+  ) => {
+    let endpointUrl = `https://api.spotify.com/v1/users/${userId}/playlists?limit=${limit}&offset=${offset}`;
+    let auth = await getAuthToken();
 
-  var myHeaders = new Headers();
-  myHeaders.append("Authorization", "Bearer " + auth.access_token);
+    var myHeaders = new Headers();
+    myHeaders.append("Authorization", "Bearer " + auth.access_token);
 
-  var requestOptions = {
-    method: "GET",
-    headers: myHeaders,
-    redirect: "follow",
-  };
+    var requestOptions = {
+      method: "GET",
+      headers: myHeaders,
+      redirect: "follow",
+    };
 
-  try {
-    let raw = await fetch(endpointUrl, requestOptions);
-    let res = await raw.json();
+    try {
+      let raw = await fetch(endpointUrl, requestOptions);
+      let res = await raw.json();
 
-    let playlistEndpoint;
-    for (playlist of res.items) {
-      playlist.name === playlistName
-        ? (playlistEndpoint = playlist.tracks.href)
-        : "";
+      let playlistEndpoint;
+      for (playlist of res.items) {
+        playlist.name === playlistName
+          ? (playlistEndpoint = playlist.tracks.href)
+          : "";
+      }
+      return playlistEndpoint;
+    } catch (e) {
+      console.error(e);
     }
-    return playlistEndpoint;
-  } catch (e) {
-    console.error(e);
-  }
 };
 
 // This functions gets all the tracks from a playlist and returns them in a array
-const getPlaylistItems = async (endpointUrl) => {
+export const getPlaylistItems = async (endpointUrl) => {
   let auth = await getAuthToken();
   var myHeaders = new Headers();
 

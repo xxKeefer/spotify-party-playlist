@@ -1,5 +1,5 @@
+import { data } from './apiActions.js'
 
-// import { showLoadingGif } from './helpers.js'
 
 // HTML ELEMENTS
 let addUserIdButton = document.getElementById('addUserIdButton')
@@ -8,13 +8,6 @@ addUserIdButton.addEventListener('click', addUserIdInput)
 let generatePlaylistButton = document.getElementById('generatePlaylistButton')
 generatePlaylistButton.addEventListener('click', generatePlaylist)
 
-
-
-// DATA
-const data = [
-  {track: 'Never Gonna Give You Up', artist: 'Rick Astley', album: 'Whenever You Need Somebody', year: '1987'}, 
-  {track: 'Underwear Goes Inside the Pants', artist: 'Lazyboy', album: 'Lazyboy TV', year: '2004'}, 
-]
 
 
 
@@ -27,10 +20,6 @@ function addUserIdInput() {
   input.placeholder = "User ID"
   inputCont.appendChild(input)
 }
-
-// function removeUserIdInput() {
-
-// }
 
 
 
@@ -64,6 +53,7 @@ function generateList(data) {
 function generatePlaylist() {
 
   let timeout = 2000
+  document.getElementById('playlist-list').innerHTML = ''
 
   document.getElementById('right-cont-header').textContent = "Getting Your Playlist"
   showElement('loadingPlaylistGif')
@@ -88,23 +78,6 @@ function showElement(id) {
 function hideElement(id) {
   document.getElementById(id).classList.add('d-none')
 }
-
-
-// function showElement(el) {
-//   el.style.display = "block"
-// }
-
-// function hideElement(el) {
-//   el.style.display = "none"
-// }
-
-// function showLoadingGif(id, time) {
-//   let loadingGif = document.getElementById(id)
-//   showElement(loadingGif)
-//   setTimeout(() => {
-//     hideElement(loadingGif)
-//   }, time);
-// }
 
 
 

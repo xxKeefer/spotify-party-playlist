@@ -36,15 +36,17 @@
     />
 
     <!-- FRONT END JS -->
-    <script defer src="js/frontEnd.js"></script>
-    <script defer src="js/apiInterface.js"></script>
-    <script defer src="js/apiActions.js"></script>
+    <script defer type="module" src="js/frontEnd.js"></script>
+    <script defer type="module" src="js/apiInterface.js"></script>
+    <script defer type="module" src="js/apiActions.js"></script>
 
     <title>Spotify Party Playlist Maker</title>
   </head>
   <body>
     <div class="container">
+
       <div class="wrapper row py-3">
+
         <div id="left-cont" class="container col-3">
           <div id="logo-cont" class="row">
             <img class="logo-img" src="./img/LOGOx.png" alt="" />
@@ -56,6 +58,7 @@
           <div id="form-cont" class="row">
             <div id="input-cont" class="container">
               <input
+                id="user-input-1"
                 class="form-control my-2"
                 type="text"
                 placeholder="User ID"
@@ -84,42 +87,28 @@
           </div>
         </div>
 
+        <!-- RIGHT CONTAINER -->
         <div id="right-cont" class="container col-9">
-          <h2>right container</h2>
-          <img id="loadingPlaylistGif" src="img/loading.gif" alt="" />
+          <h2 id="right-cont-header">xxKeefer and Simo_Sultan's Party Playlist Maker</h2>
+
+          <!-- LOADING GIF -->
+          <img id="loadingPlaylistGif" class="d-none my-3 mx-3" src="img/loading.gif" alt="">
+          
+          <!-- PLAYLIST CONTAINER -->
+          <div id="playlist-cont" class="pt-4 container d-none list-group">
+            <ul id="playlist-list"></ul>
+            <div id="output"></div>
+          </div>
+
+          <!-- USER NOT FOUND CONTAINER -->
+          <div id="user-not-found-cont" class="container d-none">
+            <img id="user-not-found-img" class="d-none my-3 mx-3" src="img/user_not_found.jpg" alt="">
+          </div>
+
         </div>
-      </div>
-  
-
-      <!-- RIGHT CONTAINER -->
-      <div id="right-cont" class="container col-9">
-        <h2 id="right-cont-header">right container</h2>
-        <!-- BACKEND DUMMY CODE -->
-          <h1>keefer is a dummy</h1>
-          <button id="getData">getData</button>
-          <label for="inputData">user id</label>
-          <input type="text" id="inputData">
-          <div id="output"></div>
-
-        <!-- LOADING GIF -->
-        <img id="loadingPlaylistGif" class="d-none my-3 mx-3" src="img/loading.gif" alt="">
-
-        <!-- PLAYLIST CONTAINER -->
-        <div id="playlist-cont" class="pt-4 container d-none list-group">
-          <ul id="playlist-list"></ul>
-        </div>
-
-        <!-- USER NOT FOUND CONTAINER -->
-        <div id="user-not-found-cont" class="container d-none">
-          <img id="user-not-found-img" class="d-none my-3 mx-3" src="img/user_not_found.jpg" alt="">
-        </div>
-
       </div>
 
     </div>
-
-
-
 
   </div>
 

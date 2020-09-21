@@ -1,6 +1,8 @@
-const getData = document.getElementById("getData");
-const inputData = document.getElementById("inputData");
+const generatePlaylistButton = document.getElementById("generatePlaylistButton");
+const inputData = document.getElementById("user-input-1");
 const output = document.getElementById("output");
+
+import { getPlaylistId, getPlaylistItems } from './apiInterface.js'
 
 const getDataFromApi = async () => {
   try {
@@ -8,8 +10,8 @@ const getDataFromApi = async () => {
     let playlistItems = await getPlaylistItems(playlistUrl);
     console.log({ playlistItems });
     let stringTracks;
-    for (track of playlistItems) {
-      stringTracks += `${track.track.name} by ${track.track.artists[0].name} has score of ${track.track.popularity}, `;
+    for (element of playlistItems) {
+      stringTracks += `${element.track.name} by ${element.track.artists[0].name} has score of ${element.track.popularity}, `;
     }
     output.innerHTML = stringTracks;
   } catch (e) {
@@ -17,4 +19,13 @@ const getDataFromApi = async () => {
   }
 };
 
-getData.onclick = getDataFromApi;
+
+
+generatePlaylistButton.onclick = getDataFromApi;
+
+
+// DATA
+export const data = [
+  {track: 'Never Gonna Give You Up', artist: 'Rick Astley', album: 'Whenever You Need Somebody', year: '1987'}, 
+  {track: 'Underwear Goes Inside the Pants', artist: 'Lazyboy', album: 'Lazyboy TV', year: '2004'}, 
+]
