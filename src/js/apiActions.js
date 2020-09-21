@@ -4,8 +4,6 @@ const generatePlaylistButton = document.getElementById(
 const inputData = document.getElementById("user-input-1");
 const output = document.getElementById("output");
 
-import { getPlaylistId, getPlaylistItems } from "./apiInterface.js";
-
 const getDataFromApi = async () => {
   try {
     // track takes the form:
