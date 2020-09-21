@@ -9,6 +9,10 @@ body {
   box-sizing: border-box;
 }
 
+.hidden {
+  display: none;
+}
+
 
 .container {
   height: 100%;
@@ -37,8 +41,7 @@ body {
 
     #right-cont {
       #loadingPlaylistGif {
-        // display: none;
-        
+        width: 10%;
       }
     }
     
