@@ -34,7 +34,7 @@ const getAuthToken = async () => {
 
 // takes a user id and playlist name and returns the playlist id
 // optional: limit and offset if target playlist is deeper in list
-export const getPlaylistId = async (
+const getPlaylistId = async (
   userId,
   playlistName = "publicLiked",
   limit = 50,
@@ -69,7 +69,7 @@ export const getPlaylistId = async (
 };
 
 // This functions gets all the tracks from a playlist and returns them in a array
-export const getPlaylistItems = async (endpointUrl) => {
+const getPlaylistItems = async (endpointUrl) => {
   let auth = await getAuthToken();
   var myHeaders = new Headers();
 
