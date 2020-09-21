@@ -17,6 +17,8 @@ const getDataFromApi = async () => {
     // };
     let tracks = await processApiData(inputData.value);
 
+    //THIS IS WHERE YOU WOULD ADD DOM MANIPULATION TO DYNAMICALLY ADD NEW CONTENT TO THE SCREEN
+
     // for (track of tracks) {
     //   let { name, artist, album, release_date, popularity, link } = track;
     //   console.log({ track });

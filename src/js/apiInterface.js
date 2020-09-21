@@ -39,33 +39,33 @@ const getPlaylistId = async (
   playlistName = "publicLiked",
   limit = 50,
   offset = 0
-  ) => {
-    let endpointUrl = `https://api.spotify.com/v1/users/${userId}/playlists?limit=${limit}&offset=${offset}`;
-    let auth = await getAuthToken();
+) => {
+  let endpointUrl = `https://api.spotify.com/v1/users/${userId}/playlists?limit=${limit}&offset=${offset}`;
+  let auth = await getAuthToken();
 
-    var myHeaders = new Headers();
-    myHeaders.append("Authorization", "Bearer " + auth.access_token);
+  var myHeaders = new Headers();
+  myHeaders.append("Authorization", "Bearer " + auth.access_token);
 
-    var requestOptions = {
-      method: "GET",
-      headers: myHeaders,
-      redirect: "follow",
-    };
+  var requestOptions = {
+    method: "GET",
+    headers: myHeaders,
+    redirect: "follow",
+  };
 
-    try {
-      let raw = await fetch(endpointUrl, requestOptions);
-      let res = await raw.json();
+  try {
+    let raw = await fetch(endpointUrl, requestOptions);
+    let res = await raw.json();
 
-      let playlistEndpoint;
-      for (playlist of res.items) {
-        playlist.name === playlistName
-          ? (playlistEndpoint = playlist.tracks.href)
-          : "";
-      }
-      return playlistEndpoint;
-    } catch (e) {
-      console.error(e);
+    let playlistEndpoint;
+    for (playlist of res.items) {
+      playlist.name === playlistName
+        ? (playlistEndpoint = playlist.tracks.href)
+        : "";
     }
+    return playlistEndpoint;
+  } catch (e) {
+    console.error(e);
+  }
 };
 
 // This functions gets all the tracks from a playlist and returns them in a array
@@ -106,6 +106,7 @@ const processApiData = async (userId) => {
   try {
     let playlistUrl = await getPlaylistId(userId);
     let playlistItems = await getPlaylistItems(playlistUrl);
+
     let tracks = [];
 
     playlistItems.forEach((t) => {
@@ -115,11 +116,11 @@ const processApiData = async (userId) => {
         album: t.track.album.name,
         release_date: t.track.album.release_date,
         popularity: t.track.popularity,
-        link: t.track.external.urls.spotify,
+        link: t.track.external_urls.spotify,
       };
       tracks.push(track);
     });
-
+    console.log({ tracks });
     return tracks;
   } catch (e) {
     console.error(e);
