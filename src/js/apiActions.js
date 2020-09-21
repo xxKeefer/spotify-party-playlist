@@ -4,14 +4,21 @@ const output = document.getElementById("output");
 
 const getDataFromApi = async () => {
   try {
-    let playlistUrl = await getPlaylistId(inputData.value);
-    let playlistItems = await getPlaylistItems(playlistUrl);
-    console.log({ playlistItems });
-    let stringTracks = "";
-    for (track of playlistItems) {
-      stringTracks += `${track.track.name} by ${track.track.artists[0].name} has score of ${track.track.popularity}, `;
-    }
-    output.innerHTML = stringTracks;
+    // track takes the form:
+    // track = {
+    //   name: t.track.name,
+    //   artist: t.track.artists[0].name,
+    //   album: t.track.album.name,
+    //   release_date: t.track.album.release_date,
+    //   popularity: t.track.popularity,
+    //   link: t.track.external.urls.spotify,
+    // };
+    let tracks = await processApiData(inputData.value);
+
+    // for (track of tracks) {
+    //   let { name, artist, album, release_date, popularity, link } = track;
+    //   console.log({ track });
+    // }
   } catch (e) {
     console.error(e);
   }
