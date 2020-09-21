@@ -33,12 +33,6 @@ const getAuthToken = async () => {
   }
 };
 
-// this function grabs the access token then passes it to whatever apiCall you are making
-const getDataFromSpotify = async (apiCall, userId) => {
-  let auth = await getAuthToken();
-  apiCall(auth.access_token, userId);
-};
-
 // takes a user id and playlist name and returns the playlist id
 // optional: limit and offset if target playlist is deeper in list
 const getPlaylistId = async (
@@ -48,10 +42,10 @@ const getPlaylistId = async (
   offset = 0
 ) => {
   let endpointUrl = `https://api.spotify.com/v1/users/${userId}/playlists?limit=${limit}&offset=${offset}`;
-  let token = getAuthToken;
+  let auth = await getAuthToken();
 
   var myHeaders = new Headers();
-  myHeaders.append("Authorization", "Bearer " + token);
+  myHeaders.append("Authorization", "Bearer " + auth.access_token);
 
   var requestOptions = {
     method: "GET",
@@ -71,4 +65,38 @@ const getPlaylistId = async (
   } catch (e) {
     console.error(e);
   }
+};
+
+const getPlaylistItems = async (endpointUrl) => {
+  let auth = await getAuthToken();
+  var myHeaders = new Headers();
+
+  var myHeaders = new Headers();
+  myHeaders.append("Authorization", "Bearer " + auth.access_token);
+
+  var requestOptions = {
+    method: "GET",
+    headers: myHeaders,
+    redirect: "follow",
+  };
+
+  let allItems = [];
+  while (true) {
+    try {
+      let raw = await fetch(endpointUrl, requestOptions);
+      let res = await raw.json();
+
+      if (!res.tracks.next) {
+        break;
+      }
+
+      endpointUrl = res.tracks.next;
+      allItems = allItems.concat(res.track.items);
+      return playlistItems;
+    } catch (e) {
+      console.error(e);
+    }
+  }
+  console.log(allItems[0]);
+  return allItems;
 };
