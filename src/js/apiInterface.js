@@ -26,7 +26,6 @@ const getAuthToken = async () => {
       requestOptions
     );
     let res = await raw.json();
-    console.log(res);
     return res;
   } catch (e) {
     console.error(e);
@@ -56,17 +55,20 @@ const getPlaylistId = async (
   try {
     let raw = await fetch(endpointUrl, requestOptions);
     let res = await raw.json();
+
     let playlistEndpoint;
-    for (playlist of res) {
-      playlist.name === playlistName ? (playlistEndpoint = playlist.href) : "";
+    for (playlist of res.items) {
+      playlist.name === playlistName
+        ? (playlistEndpoint = playlist.tracks.href)
+        : "";
     }
-    console.log({ playlistEndpoint, playlistName });
     return playlistEndpoint;
   } catch (e) {
     console.error(e);
   }
 };
 
+// This functions gets all the tracks from a playlist and returns them in a array
 const getPlaylistItems = async (endpointUrl) => {
   let auth = await getAuthToken();
   var myHeaders = new Headers();
@@ -85,18 +87,16 @@ const getPlaylistItems = async (endpointUrl) => {
     try {
       let raw = await fetch(endpointUrl, requestOptions);
       let res = await raw.json();
-
-      if (!res.tracks.next) {
+      if (res.next === null) {
         break;
       }
-
-      endpointUrl = res.tracks.next;
-      allItems = allItems.concat(res.track.items);
-      return playlistItems;
+      endpointUrl = res.next;
+      let newItems = res.items;
+      allItems = allItems.concat(newItems);
     } catch (e) {
       console.error(e);
+      break;
     }
   }
-  console.log(allItems[0]);
   return allItems;
 };
