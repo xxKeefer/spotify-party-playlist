@@ -39,30 +39,6 @@ const getDataFromSpotify = async (apiCall, userId) => {
   apiCall(auth.access_token, userId);
 };
 
-// this gets the json data from the endpoint specified
-const fetchEndpoint = async (token, endPoint) => {
-  var myHeaders = new Headers();
-  myHeaders.append("Authorization", "Bearer " + token);
-
-  var requestOptions = {
-    method: "GET",
-    headers: myHeaders,
-    redirect: "follow",
-  };
-
-  try {
-    let raw = await fetch(
-      "https://api.spotify.com/v1/" + endPoint,
-      requestOptions
-    );
-    let res = await raw.json();
-    console.log(res);
-    data.innerHTML = raw;
-  } catch (e) {
-    console.error(e);
-  }
-};
-
 // takes a user id and playlist name and returns the playlist id
 // optional: limit and offset if target playlist is deeper in list
 const getPlaylistId = async (
@@ -86,12 +62,12 @@ const getPlaylistId = async (
   try {
     let raw = await fetch(endpointUrl, requestOptions);
     let res = await raw.json();
-    let playlistId;
+    let playlistEndpoint;
     for (playlist of res) {
-      playlist.name === playlistName ? (playlistId = playlist.id) : "";
+      playlist.name === playlistName ? (playlistEndpoint = playlist.href) : "";
     }
-    console.log({ playlistId, playlistName });
-    return playlistId;
+    console.log({ playlistEndpoint, playlistName });
+    return playlistEndpoint;
   } catch (e) {
     console.error(e);
   }
