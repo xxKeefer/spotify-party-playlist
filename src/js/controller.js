@@ -1,21 +1,17 @@
 export function getUserInputs() {
   let inputs = document.querySelectorAll(".user-input");
   let arr = Array.from(inputs);
-  if (!checkEmptyInputFromArr(arr)) {
-    alert("There is an empty input. Please provide at least 2 user IDs.")
-    return false
+  arr = arr.filter((x) => x.value != "");
+  if (arr.length < 2) {
+    alert("There is an empty input. Please provide at least 2 user IDs.");
+    return false;
   }
-  return arr.map((el) => el.value).filter((el) => el !== null);
+  return arr.map((el) => el.value);
 }
 
-function checkEmptyInputFromArr(arr) {
-  arr.forEach(element => {
-    return (element.value === '') ? false : true
-  });
-}
 
 export default async () => {
-  let userArray = await getUserInputs();
+  let userArray = getUserInputs();
   let apiCalls = [];
 
   try {
