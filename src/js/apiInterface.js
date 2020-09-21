@@ -100,3 +100,28 @@ const getPlaylistItems = async (endpointUrl) => {
   }
   return allItems;
 };
+
+// this processes the data down to a useable object
+const processApiData = async (userId) => {
+  try {
+    let playlistUrl = await getPlaylistId(userId);
+    let playlistItems = await getPlaylistItems(playlistUrl);
+    let tracks = [];
+
+    playlistItems.forEach((t) => {
+      track = {
+        name: t.track.name,
+        artist: t.track.artists[0].name,
+        album: t.track.album.name,
+        release_date: t.track.album.release_date,
+        popularity: t.track.popularity,
+        link: t.track.external.urls.spotify,
+      };
+      tracks.push(track);
+    });
+
+    return tracks;
+  } catch (e) {
+    console.error(e);
+  }
+};
