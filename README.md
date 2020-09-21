@@ -3,15 +3,15 @@
 The app: [Spotify-PPM](https://driving-lesson-marketplace.herokuapp.com/)  
 Source code: [Spotify-PPM](https://github.com/SimoSultan/dlm)
 
-[simonmcurran.com](https://www.simonmcurran.com/)
+[simonmcurran.com](https://www.simonmcurran.com/)  
 ![SimoSultan's GitHub](https://img.shields.io/github/followers/SimoSultan?logo=GitHub&style=for-the-badge)  
 ![@simo_sultan's Twitter](https://img.shields.io/twitter/follow/simo_sultan?color=%234183C4&logo=twitter&style=for-the-badge))  
-![LinkedIn](https://img.shields.io/badge/linkedin-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white)
+![Simons's LinkedIn](https://img.shields.io/badge/linkedin-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white)
 
-[danielkeefer.com](https://www.danielkeefer.com/)
+[danielkeefer.com](https://www.danielkeefer.com/)  
 ![xxKeefer GitHub](https://img.shields.io/github/followers/xxKeefer?logo=GitHub&style=for-the-badge)  
 ![@simo_sultan's Twitter](https://img.shields.io/twitter/follow/xxKeefer?color=%234183C4&logo=twitter&style=for-the-badge))  
-![LinkedIn](https://img.shields.io/badge/linkedin-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white)
+![Keefer's LinkedIn](https://img.shields.io/badge/linkedin-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white)
 
 
 
