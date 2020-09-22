@@ -189,6 +189,7 @@ async function generatePlaylist() {
         "Here's your banger playlist!";
       hideElement('form-cont')
       showElement("playlist-cont");
+      showElement('chart-cont')
     } else {
       document.getElementById("right-cont-header").textContent = "Uh Oh!";
       document.getElementById("right-cont-sub-header").textContent =
@@ -204,8 +205,9 @@ async function generatePlaylist() {
 
 function showHomePage() {
   hideElement('playlist-cont')
-  hideElement("playlist-cont");
+  hideElement("chart-cont");
   showElement("home-page-cont");
+  showElement("form-cont");
 }
 
 function showElement(id) {
