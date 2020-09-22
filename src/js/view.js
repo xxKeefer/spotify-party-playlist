@@ -26,7 +26,7 @@ logoWordsImg.addEventListener("click", showHomePage);
 let tempDebug = document.getElementById("tempDebug");
 tempDebug.onclick = async () => {
   let data = await playlistData();
-  let dataSet = chart.getNumTracksByUser(data);
+  let dataSet = chart.getAvgPopularityByUser(data);
   console.log({ dataSet });
 };
 

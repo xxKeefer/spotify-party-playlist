@@ -1,21 +1,3 @@
-export const testFunc = async (apiCall) => {
-  let data = await apiCall;
-  console.log(data);
-};
-
-export const processData = async (apiCall) => {
-  let data = await apiCall;
-  console.log(getAvgPopularity(data));
-};
-
-const getAvgPopularity = (data) => {
-  data = data.flat();
-  let sumPopular = data
-    .map((el) => el.popularity)
-    .reduce((acc, val) => acc + val, 0);
-  return sumPopular / data.length;
-};
-
 export const filterByCommonArtists = (data) => {
   let commonArrays = [];
   let flatData = data.flat();
@@ -59,7 +41,40 @@ export const filterByCommonArtists = (data) => {
   return sortedData;
 };
 
+// this was an idea i had to have like one monolith function the returns an object with all the datasets for all charts
+export const processData = async (apiCall) => {
+  let data = await apiCall;
+  // dataProcessingFunctions(data) go here
+  // another one,
+};
+
+const getAvgPopularity = (data) => {
+  data = data.flat();
+  let sumPopular = data
+    .map((el) => el.popularity)
+    .reduce((acc, val) => acc + val, 0);
+  return sumPopular / data.length;
+};
+
+export const getAvgPopularityByUser = (data) => {
+  //TODO: filterByCommonArtists doesn't account for if both userA and userB add the same song to their lists
+  data = filterByCommonArtists(data);
+  let dataSet = [];
+  let userNames = Array.from(new Set(data.map((el) => el.username)));
+  for (let user of userNames) {
+    let usersSongs = data.filter((song) => song.username === user);
+    let usersPopularity = usersSongs
+      .map((el) => el.popularity)
+      .reduce((acc, val) => acc + val, 0);
+    let truncate =
+      Math.floor((usersPopularity / usersSongs.length) * 100) / 100;
+    dataSet.push(truncate);
+  }
+  return [userNames, dataSet];
+};
+
 export const getNumTracksByUser = (data) => {
+  //TODO: filterByCommonArtists doesn't account for if both userA and userB add the same song to their lists
   data = filterByCommonArtists(data);
   let dataSet = [];
   let userNames = Array.from(new Set(data.map((el) => el.username)));
