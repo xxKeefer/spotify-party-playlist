@@ -16,8 +16,33 @@ const getAvgPopularity = (data) => {
   return sumPopular / data.length;
 };
 
+export const filterByCommonArtists = (data) => {
+  let commonArrays = [];
+  let flatData = data.flat();
+  do {
+    let compare = data.shift();
+    for (let user of data) {
+      let compareArtists = compare.map((song) => song.artist);
+      let userArtists = user.map((song) => song.artist);
+      let common = compareArtists.filter((item) => userArtists.includes(item));
+      commonArrays.push(common);
+    }
+  } while (data.length > 1);
+  let commonArtists = Array.from(new Set(commonArrays.flat()));
+  let filteredData = flatData.filter((song) =>
+    commonArtists.includes(song.artist)
+  );
 
-// FROM THE INTRO PAGE OF CHART JS
+  return filteredData.sort(function (a, b) {
+    let artistA = a.artist.toUpperCase();
+    let artistB = b.artist.toUpperCase();
+    if (artistA < artistB) return -1;
+    if (artistA > artistB) return 1;
+    return 0;
+  });
+};
+
+
 
 var ctx = document.getElementById('myChart').getContext('2d');
 var myChart = new Chart(ctx, {

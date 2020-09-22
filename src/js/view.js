@@ -104,6 +104,7 @@ function generateList(dataArray) {
   let list = document.getElementById("playlist-list");
 
   let data = filterLists(dataArray);
+  // let data = chart.filterByCommonArtists(dataArray);
 
   if (data.length < 1) {
     let item = document.createElement("li");
@@ -131,7 +132,6 @@ function generateList(dataArray) {
     img.style.width = "50%"
     img.src = 'img/music_note.png'
     img.alt = ""
-
     
     let text = document.createElement('span')
     text.classList.add('d-inline', 'pl-1')
@@ -151,7 +151,6 @@ function generateList(dataArray) {
     row2.appendChild(link)
 
     item.appendChild(row1)
-    // item.appendChild(row2)
     item.appendChild(row2)
 
     list.appendChild(item)
