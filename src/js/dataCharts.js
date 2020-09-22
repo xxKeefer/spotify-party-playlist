@@ -31,10 +31,11 @@ export const filterByCommonArtists = (data) => {
   });
 
   // this bit filters the dupes that are caused by two people having the same song in their playlist
+  // and also the duplicates that arise from on person having the same song twice in their playlist
   sortedData.forEach((song, i, data) => {
-    if (i + 1 < data.length) {
-      if (song.name === data[i + 1].name) {
-        data.splice(i + 1, 1);
+    for (let s of data) {
+      if (data.indexOf(s) !== i && Object.values(s).indexOf(song.name) > -1) {
+        data.splice(data.indexOf(s), 1);
       }
     }
   });
