@@ -60,7 +60,7 @@ const getAvgPopularity = (data) => {
 
 export const getAvgPopularityByUser = (data) => {
   //TODO: filterByCommonArtists doesn't account for if both userA and userB add the same song to their lists
-  data = filterByCommonArtists(data);
+  // data = filterByCommonArtists(data);
   let dataSet = [];
   let userNames = Array.from(new Set(data.map((el) => el.username)));
   for (let user of userNames) {
@@ -77,7 +77,6 @@ export const getAvgPopularityByUser = (data) => {
 
 export const getNumTracksByUser = (data) => {
   //TODO: filterByCommonArtists doesn't account for if both userA and userB add the same song to their lists
-  // data = filterByCommonArtists(data);
   let dataSet = [];
   let userNames = Array.from(new Set(data.map((el) => el.username)));
   for (let user of userNames) {
@@ -90,7 +89,6 @@ export const getNumTracksByUser = (data) => {
 
 export const getDecadesByUser = (data) => {
   //TODO: filterByCommonArtists doesn't account for if both userA and userB add the same song to their lists
-  data = filterByCommonArtists(data);
   let dataSet = [];
   let userNames = Array.from(new Set(data.map((el) => el.username)));
   for (let user of userNames) {
@@ -143,7 +141,6 @@ export const getDecadesByUser = (data) => {
 
 export const getNumTracksByArtist = (data) => {
   //TODO: filterByCommonArtists doesn't account for if both userA and userB add the same song to their lists
-  data = filterByCommonArtists(data);
   let dataSet = [];
   let artists = Array.from(new Set(data.map((el) => el.artist)));
   for (let artist of artists) {

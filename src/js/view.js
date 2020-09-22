@@ -232,12 +232,12 @@ function hideElement(id) {
 function generateCharts(data) {
 
   let pieData = chart.getNumTracksByUser(data)
-  // let radarData = chart.getNumTracksByUser(data)
-  // let lineData = chart.getNumTracksByUser(data)
-  // let barData = chart.getNumTracksByUser(data)
-  let barData = [['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'], [12, 19, 3, 5, 2, 3]]
-  let radarData = [['Red', 'Blue', 'Yellow'],[10, 20, 30]]
-  let lineData = [['Red', 'Blue', 'Yellow'],[10, 20, 30]]
+  let radarData = chart.getAvgPopularityByUser(data)
+  let lineData = chart.getDecadesByUser(data)
+  let barData = chart.getNumTracksByArtist(data)
+  // let barData = [['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'], [12, 19, 3, 5, 2, 3]]
+  // let radarData = [['Red', 'Blue', 'Yellow'],[10, 20, 30]]
+  // let lineData = [['Red', 'Blue', 'Yellow'],[10, 20, 30]]
   
   
 
