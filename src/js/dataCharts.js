@@ -19,6 +19,8 @@ const getAvgPopularity = (data) => {
 export const filterByCommonArtists = (data) => {
   let commonArrays = [];
   let flatData = data.flat();
+
+  // compares each users songs to every other user and collects the songs by the artists they have in common
   do {
     let compare = data.shift();
     for (let user of data) {
@@ -28,18 +30,33 @@ export const filterByCommonArtists = (data) => {
       commonArrays.push(common);
     }
   } while (data.length > 1);
+
+  // filters duplicate artist names for filtration
   let commonArtists = Array.from(new Set(commonArrays.flat()));
+
+  // filters the raw data set down to only the songs that are shared
   let filteredData = flatData.filter((song) =>
     commonArtists.includes(song.artist)
   );
 
-  return filteredData.sort(function (a, b) {
+  // sorts the output playlist by artist alphabetically
+  let sortedData = filteredData.sort(function (a, b) {
     let artistA = a.artist.toUpperCase();
     let artistB = b.artist.toUpperCase();
     if (artistA < artistB) return -1;
     if (artistA > artistB) return 1;
     return 0;
   });
+
+  // this bit filters the dupes that are caused by two people having the same song in their playlist
+  sortedData.forEach((song, i, data) => {
+    if (i + 1 < data.length) {
+      if (song.name === data[i + 1].name) {
+        data.splice(i + 1, 1);
+      }
+    }
+  });
+  return sortedData;
 };
 
 export const getNumTracksByUser = (data) => {
