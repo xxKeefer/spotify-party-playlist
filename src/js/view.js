@@ -225,6 +225,11 @@ function hideElement(id) {
 
 // CHART STUFF
 
+
+function resetChart(chart) {
+  chart.reset()
+}
+
 function generateCharts(data) {
   let pieData = chart.getNumTracksByUser(data);
   let radarData = chart.getAvgPopularityByUser(data);
@@ -282,6 +287,9 @@ function generatePieChart(data, colors) {
       },
     },
   });
+
+  logoImg.addEventListener("click", () => { resetChart(pieChart) });
+  logoWordsImg.addEventListener("click", () => { resetChart(pieChart) });
 }
 
 function generateRadarChart(data, colors) {
@@ -321,6 +329,9 @@ function generateRadarChart(data, colors) {
       },
     },
   });
+
+  logoImg.addEventListener("click", () => { resetChart(radarChart) });
+  logoWordsImg.addEventListener("click", () => { resetChart(radarChart) });
 }
 
 function generateLineChart(data, colors) {
@@ -340,7 +351,6 @@ function generateLineChart(data, colors) {
     let obj = {
       label: label,
       data: set,
-      // backgroundColor: color,
       borderColor: border,
       borderWidth: width,
       fill: false,
@@ -395,6 +405,9 @@ function generateLineChart(data, colors) {
       },
     },
   });
+
+  logoImg.addEventListener("click", () => { resetChart(lineChart) });
+  logoWordsImg.addEventListener("click", () => { resetChart(lineChart) });
 }
 
 function generateBarChart(data, colors) {
@@ -441,6 +454,9 @@ function generateBarChart(data, colors) {
       },
     },
   });
+
+  logoImg.addEventListener("click", () => { resetChart(barChart) });
+  logoWordsImg.addEventListener("click", () => { resetChart(barChart) });
 }
 
 function getChartColor(num) {
