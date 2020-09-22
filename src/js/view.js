@@ -132,11 +132,6 @@ function generateList(dataArray) {
     img.src = "img/music_note.png";
     img.alt = "";
 
-    let img = document.createElement("img");
-    img.style.width = "50%";
-    img.src = "img/music_note.png";
-    img.alt = "";
-
     let text = document.createElement("span");
     text.classList.add("d-inline", "pl-1");
     text.innerHTML = `<strong>${element.artist}: </strong> ${element.name}`;

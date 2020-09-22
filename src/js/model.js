@@ -109,6 +109,27 @@ const getPlaylistItems = async (endpointUrl) => {
   return allItems;
 };
 
+const getDisplayName = async (userId) => {
+  let endpoint = `https://api.spotify.com/v1/users/${userId}`;
+  let auth = await getAuthToken();
+  var myHeaders = new Headers();
+  myHeaders.append("Authorization", "Bearer " + auth.access_token);
+
+  var requestOptions = {
+    method: "GET",
+    headers: myHeaders,
+    redirect: "follow",
+  };
+  try {
+    let raw = await fetch(endpointUrl, requestOptions);
+    let res = await raw.json();
+
+    return res.display_name;
+  } catch (e) {
+    console.error(e);
+  }
+};
+
 // this processes the data down to a useable object
 const processApiData = async (userId) => {
   try {
@@ -119,6 +140,7 @@ const processApiData = async (userId) => {
     //   return false
     // }
     let playlistItems = await getPlaylistItems(playlistUrl);
+    let displayName = await getDisplayName(userId);
 
     let tracks = [];
 
@@ -132,6 +154,7 @@ const processApiData = async (userId) => {
         link: t.track.external_urls.spotify,
         id: t.track.id,
         from_user: t.added_by.id,
+        username: displayName,
       };
       tracks.push(track);
     });
