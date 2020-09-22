@@ -54,9 +54,12 @@ const getPlaylistId = async (
 
   try {
     let raw = await fetch(endpointUrl, requestOptions);
-    // if (raw.status == 404) {
-    //   alert('now im here')
-    // }
+    if (!raw.ok) {
+      return {
+        error: "No Playlist",
+        msg: `Could not locate playlist for user: ${userId}.`,
+      };
+    }
     let res = await raw.json();
 
     let playlistEndpoint;
@@ -89,11 +92,12 @@ const getPlaylistItems = async (endpointUrl) => {
   while (true) {
     try {
       let raw = await fetch(endpointUrl, requestOptions);
-      // console.log(raw);
-      // if (raw.status == 404) {
-      //   alert('i found an error')
-      //   // throw
-      // }
+      if (!raw.ok) {
+        return {
+          error: "Lost Playlist",
+          msg: `Located playlist for user: ${userId}, but something went wrong.`,
+        };
+      }
       let res = await raw.json();
       endpointUrl = res.next;
       let newItems = res.items;
@@ -122,6 +126,9 @@ const getDisplayName = async (userId) => {
   };
   try {
     let raw = await fetch(endpointUrl, requestOptions);
+    if (!raw.ok) {
+      return { error: "No User", msg: `Could not locate user: ${userId}.` };
+    }
     let res = await raw.json();
 
     return res.display_name;
@@ -133,14 +140,16 @@ const getDisplayName = async (userId) => {
 // this processes the data down to a useable object
 const processApiData = async (userId) => {
   try {
-    let playlistUrl = await getPlaylistId(userId);
-    // console.log(playlistUrl);
-    // if (playlistUrl === undefined) {
-    //   alert('i stopped where I want')
-    //   return false
-    // }
-    let playlistItems = await getPlaylistItems(playlistUrl);
     let displayName = await getDisplayName(userId);
+    let playlistUrl = await getPlaylistId(userId);
+    let playlistItems = await getPlaylistItems(playlistUrl);
+
+    for (let res of [displayName, playlistUrl, playlistItems]) {
+      if (res.hasOwnProperty("error")) {
+        console.log({ res });
+        return res;
+      }
+    }
 
     let tracks = [];
 
