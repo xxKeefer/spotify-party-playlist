@@ -55,15 +55,22 @@ body {
           }
         }
       }
+
+      #playlist-cont {
+          height: 82%;
+          #playlist-list {
+          //   .list-group-item .row .music-note-img {
+          //     width: 4%;
+          // }
+        }
+      }
     }
 
     #right-cont {
       #loadingPlaylistGif {
         width: 10%;
       }
-      #playlist-cont {
-        height: 95%;
-      }
+
     }
   }
 }

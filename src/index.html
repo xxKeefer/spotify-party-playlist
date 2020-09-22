@@ -55,10 +55,11 @@
   <body>
     <div class="container">
       <div class="wrapper row py-3">
+
         <!-- LEFT CONTAINER -->
-        <div id="left-cont" class="container col-3">
+        <div id="left-cont" class="container col-4">
           <!-- LOGO CONTAINER -->
-          <div id="logo-cont" class="row">
+          <div id="logo-cont" class="row h-auto">
             <img id="logo" class="logo-img" src="./img/LOGOx.png" alt="" />
             <img
               id="logo-words"
@@ -96,22 +97,36 @@
             <button
               id="addUserIdButton"
               type="button"
-              class="btn btn-outline-primary"
+              class="btn btn-outline-primary mt-3"
             >
               Add User
             </button>
             <button
               id="generatePlaylistButton"
               type="button"
-              class="ml-3 btn btn-primary"
+              class="ml-3 mt-3 btn btn-primary"
             >
               Generate Playlist
             </button>
           </div>
+
+          <!-- PLAYLIST CONTAINER -->
+          <div
+            id="playlist-cont"
+            class="pt-4 overflow-auto container d-none list-group"
+          >
+            <ul id="playlist-list" class="p-0"></ul>
+            <div id="output"></div>
+          </div>
         </div>
 
+
+
+
+
+
         <!-- RIGHT CONTAINER -->
-        <div id="right-cont" class="container col-9">
+        <div id="right-cont" class="container col-8">
           <h2 id="right-cont-header" class="text-center">
             xxKeefer & Simo_Sultan's
           </h2>
@@ -158,13 +173,13 @@
           </div>
 
             <!-- PLAYLIST CONTAINER -->
-          <div
+          <!-- <div
             id="playlist-cont"
             class="pt-4 overflow-auto container d-none list-group"
           >
             <ul id="playlist-list"></ul>
             <div id="output"></div>
-          </div>
+          </div> -->
 
           <!-- LOADING GIF -->
           <div id="loading-cont" class="container d-none mt-5">

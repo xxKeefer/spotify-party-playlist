@@ -59,11 +59,11 @@ body .footer .container .footer-social-icons {
           filter: invert(21%) sepia(87%) saturate(6870%) hue-rotate(357deg) brightness(105%) contrast(117%);
 }
 
-.container .wrapper #right-cont #loadingPlaylistGif {
-  width: 10%;
+.container .wrapper #left-cont #playlist-cont {
+  height: 82%;
 }
 
-.container .wrapper #right-cont #playlist-cont {
-  height: 95%;
+.container .wrapper #right-cont #loadingPlaylistGif {
+  width: 10%;
 }
 /*# sourceMappingURL=styles.css.map */

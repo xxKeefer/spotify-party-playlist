@@ -56,6 +56,34 @@ function filterLists(dataArray) {
 
   let smallestArr = dataArray.reduce((prev, next) => prev.length > next.length ? next : prev)
 
+  // let filteredArray = []
+
+  // // loop through the smallest array in the list of arrays in dataArray
+  // for (let i = 0; i < smallestArr.length; i++) {
+  //   const smallEl = smallestArr[i];
+
+  //   for (let j = 0; j < dataArray.length; j++) {
+  //     // loop the the dataArray, and if the current element it's looking at is the smallest array, skip it
+  //     // otherwise filter through the remaining elements in the dataArray
+  //     if (dataArray[j] === smallestArr) {
+  //       continue
+  //     }
+      
+  //     else {
+
+  
+  //       let filter = dataArray[j].filter(el => el.artist == smallEl.artist)
+              
+  //       console.log('filter');
+  //       console.log(filter);
+
+  //       filteredArray.concat(filter)
+  //     }
+  //   }
+    
+  // }
+
+
   const filteredArray = smallestArr.filter((el) => {
 
     for (let i = 0; i < dataArray.length; i++) {
@@ -73,6 +101,9 @@ function filterLists(dataArray) {
       }
     }
   });
+
+  // console.log('filtered array');
+  // console.log(filteredArray);
 
   return filteredArray
 }
@@ -96,28 +127,46 @@ function generateList(dataArray) {
   data.forEach(element => {
     let item = document.createElement('li')
     item.classList.add('list-group-item', 'row')
-    
+
+    let row1 = document.createElement('div')
+    row1.classList.add('row')
+    let row2 = document.createElement('div')
+    row2.classList.add('row')
+    let row3 = document.createElement('div')
+    row3.classList.add('row')
+
+    let imgSpan = document.createElement('span')
+    imgSpan.classList.add('col-3', 'd-inline')
+
     let img = document.createElement('img')
-    img.style = "width: 9%;"
-    img.classList.add('col-2')
-    img.style.display = 'inline-block'
+    img.style.width = "50%"
     img.src = 'img/music_note.png'
     img.alt = ""
 
-    let text = document.createElement('p')
-    text.classList.add('col-8')
-    text.style.display = 'inline-block'
-    text.innerHTML = `<strong>${element.artist}:</strong> ${element.name}`
-    text.style.margin = 0
+    let artist = document.createElement('span')
+    artist.classList.add('col-9', 'd-inline', 'm-0')
+    artist.innerHTML = `<strong>${element.artist}</strong>`
+
+    let track = document.createElement('p')
+    track.classList.add('col', 'font-italic', 'm-0', 'ml-2')
+    track.innerHTML = `${element.name}`
 
     let link = document.createElement('a')
-    link.classList.add('text-right', 'col-3')
+    link.classList.add('text-right', 'col-9')
     link.style.cursor = 'pointer'
     link.textContent = 'Open in Spotify'
 
-    item.appendChild(img)
-    item.appendChild(text)
-    item.appendChild(link)
+    row1.appendChild(artist)
+
+    row2.appendChild(track)
+
+    imgSpan.appendChild(img)
+    row3.appendChild(imgSpan)
+    row3.appendChild(link)
+
+    item.appendChild(row1)
+    item.appendChild(row2)
+    item.appendChild(row3)
 
     list.appendChild(item)
   });
@@ -152,6 +201,7 @@ async function generatePlaylist() {
     if (generateList(data)) {
       document.getElementById('right-cont-header').textContent = "Success!!"
       document.getElementById('right-cont-sub-header').textContent = "Here's your banger playlist!"
+      hideElement('form-cont')
       showElement('playlist-cont')
     } else {
       document.getElementById('right-cont-header').textContent = "Uh Oh!"
@@ -171,6 +221,7 @@ async function generatePlaylist() {
 function showHomePage() {
   hideElement('playlist-cont')
   showElement('home-page-cont')
+  showElement('form-cont')
 }
 
 
