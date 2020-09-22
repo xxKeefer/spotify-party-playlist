@@ -60,44 +60,44 @@ function removeUserInput(num) {
   document.getElementById(`user-cont-${num}`).remove();
 }
 
-function filterLists(dataArray) {
-  // find the smallest array in the array of arrays
-  let smallestArr = dataArray.reduce((prev, next) =>
-    prev.length > next.length ? next : prev
-  );
+// function filterLists(data) {
+  // // find the smallest array in the array of arrays
+  // let smallestArr = dataArray.reduce((prev, next) =>
+  //   prev.length > next.length ? next : prev
+  // );
 
-  // get only the artists out of the smallest array
-  // then get the unique values from the array
-  let smallArtist = smallestArr.map((el) => el.artist);
-  let smallArtistUniq = Array.from(new Set(smallArtist));
+  // // get only the artists out of the smallest array
+  // // then get the unique values from the array
+  // let smallArtist = smallestArr.map((el) => el.artist);
+  // let smallArtistUniq = Array.from(new Set(smallArtist));
 
-  // get the other arrays that aren't the smallest and flatten them into one array
-  // get only the artists out of that flattened array of other arrays
-  // get the unique values out of that array
-  let flattened = dataArray.filter((arr) => arr != smallestArr).flat();
-  let allArtistsFlat = flattened.map((el) => el.artist);
-  let allArtistsFlatUniq = Array.from(new Set(allArtistsFlat));
+  // // get the other arrays that aren't the smallest and flatten them into one array
+  // // get only the artists out of that flattened array of other arrays
+  // // get the unique values out of that array
+  // let flattened = dataArray.filter((arr) => arr != smallestArr).flat();
+  // let allArtistsFlat = flattened.map((el) => el.artist);
+  // let allArtistsFlatUniq = Array.from(new Set(allArtistsFlat));
 
-  let filteredArtists = [];
+  // let filteredArtists = [];
 
-  // loop through the smallest array of artists
-  // and if the other array includes an artist from the smallest array of artists
-  // then push that artist to the filtered array
-  for (let i = 0; i < smallArtistUniq.length; i++) {
-    const element = smallArtistUniq[i];
-    if (allArtistsFlatUniq.includes(element)) {
-      filteredArtists.push(element);
-    }
-  }
+  // // loop through the smallest array of artists
+  // // and if the other array includes an artist from the smallest array of artists
+  // // then push that artist to the filtered array
+  // for (let i = 0; i < smallArtistUniq.length; i++) {
+  //   const element = smallArtistUniq[i];
+  //   if (allArtistsFlatUniq.includes(element)) {
+  //     filteredArtists.push(element);
+  //   }
+  // }
 
-  // flatten all objects into one array to filter
-  // filter that first large flattened array of objects by the artists that are in our filtered artists we just found
-  let dataArrayFlatObjects = dataArray.flat();
-  let filteredArray = dataArrayFlatObjects.filter((e) =>
-    filteredArtists.includes(e.artist)
-  );
-  return filteredArray;
-}
+  // // flatten all objects into one array to filter
+  // // filter that first large flattened array of objects by the artists that are in our filtered artists we just found
+  // let dataArrayFlatObjects = dataArray.flat();
+  // let filteredArray = dataArrayFlatObjects.filter((e) =>
+  //   filteredArtists.includes(e.artist)
+  // );
+  // return filteredArray;
+// }
 
 function generateList(dataArray) {
   let list = document.getElementById("playlist-list");
