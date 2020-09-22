@@ -104,6 +104,8 @@ function generateList(dataArray) {
 
   // let data = filterLists(dataArray);
   let data = chart.filterByCommonArtists(dataArray);
+  generateCharts(data)
+
 
   if (data.length < 1) {
     let item = document.createElement("li");
@@ -181,11 +183,12 @@ async function generatePlaylist() {
 
   let data = await playlistData();
 
+
   setTimeout(() => {
     if (generateList(data)) {
       document.getElementById("right-cont-header").textContent = "Success!!";
       document.getElementById("right-cont-sub-header").textContent =
-        "Here's your banger playlist!";
+        "And here's a data breakdown of your playlist";
       hideElement("form-cont");
       hideElement("not-found");
       showElement("playlist-cont");
@@ -218,3 +221,200 @@ function showElement(id) {
 function hideElement(id) {
   document.getElementById(id).classList.add("d-none");
 }
+
+
+
+
+
+// CHART STUFF
+
+
+function generateCharts(data) {
+
+  let pieData = chart.getNumTracksByUser(data)
+  // let radarData = chart.getNumTracksByUser(data)
+  // let lineData = chart.getNumTracksByUser(data)
+  // let barData = chart.getNumTracksByUser(data)
+  let barData = [['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'], [12, 19, 3, 5, 2, 3]]
+  let radarData = [['Red', 'Blue', 'Yellow'],[10, 20, 30]]
+  let lineData = [['Red', 'Blue', 'Yellow'],[10, 20, 30]]
+  
+  
+
+  let amountOfColors = (pieData[0].length > 10) ? pieData[0].length : 10
+  let colors = getChartColor(amountOfColors)
+  
+
+
+
+  generatePieChart(pieData, colors)
+  if (pieData[0].length > 2) {
+    generateRadarChart(radarData, colors)
+  } else {
+    showElement('myRadarChart-alert')
+  }
+  generateLineChart(lineData, colors)
+  generateBarChart(barData, colors)
+
+}
+
+
+
+function generatePieChart(data, colors) {
+
+  let dataLabel = data[0]
+  let dataSet = data[1]
+
+  let pieData = {
+    datasets: [{
+        data: dataSet,
+        pointHoverBackgroundColor: colors.backgroundColors,
+        backgroundColor: colors.backgroundColors,
+        borderWidth: colors.borderWidth,
+    }],
+  
+    // These labels appear in the legend and in the tooltips when hovering different arcs
+    labels: dataLabel,
+  };
+
+
+
+  let myPieChart = document.getElementById('myPieChart').getContext('2d');
+  let pieChart = new Chart(myPieChart, {
+    type: 'pie',
+    data: pieData,
+    // options: options
+  });
+
+
+}
+
+
+function generateRadarChart(data, colors) {
+
+  let dataLabel = data[0]
+  let dataSet = data[1]
+
+  let radarData = {
+    datasets: [{
+        data: dataSet,
+        pointHoverBackgroundColor: colors.backgroundColors,
+        backgroundColor: colors.backgroundColors,
+        borderColor: colors.borderColors,
+        borderWidth: colors.borderWidth,
+    }],
+  
+    // These labels appear in the legend and in the tooltips when hovering different arcs
+    labels: dataLabel,
+  };
+
+
+  let myRadarChart = document.getElementById('myRadarChart').getContext('2d');
+  let radarChart = new Chart(myRadarChart, {
+    type: 'radar',
+    data: radarData,
+    // options: options
+  });
+
+}
+
+
+function generateLineChart(data, colors) {
+
+  let dataLabel = data[0]
+  let dataSet = data[1]
+
+  let lineData = {
+    datasets: [{
+        data: dataSet,
+        pointHoverBackgroundColor: colors.backgroundColors,
+        backgroundColor: colors.backgroundColors,
+        borderColor: colors.borderColors,
+        borderWidth: colors.borderWidth,
+    }],
+  
+    // These labels appear in the legend and in the tooltips when hovering different arcs
+    labels: dataLabel,
+  };
+    
+  let myLineChart = document.getElementById('myLineChart').getContext('2d');
+  let lineChart = new Chart(myLineChart, {
+    type: 'line',
+    data: lineData,
+    // options: options
+  });
+
+}
+
+
+function generateBarChart(data, colors) {
+  
+  let dataLabel = data[0]
+  let dataSet = data[1]
+
+  let barData = {
+    datasets: [{
+        data: dataSet,
+        pointHoverBackgroundColor: colors.backgroundColors,
+        backgroundColor: colors.backgroundColors,
+        borderColor: colors.borderColors,
+        borderWidth: colors.borderWidth,
+    }],
+  
+    // These labels appear in the legend and in the tooltips when hovering different arcs
+    labels: dataLabel,
+  };
+  
+  
+  let myBarChart = document.getElementById('myBarChart').getContext('2d');
+  let barChart = new Chart(myBarChart, {
+      type: 'bar',
+      data: barData,
+      options: {
+          scales: {
+              yAxes: [{
+                  ticks: {
+                      beginAtZero: true
+                  }
+              }]
+          }
+      }
+  });
+
+}
+
+
+
+
+function getChartColor(num) {
+
+  let opacity = 0.4
+  let colorStrings = chart.globalColorStrings
+  let count = 0;
+  let backgroundColors = []
+  let borderColors = []
+  let borderWidth = 1
+
+  while(count < num) {
+
+    let keys = Object.keys(colorStrings);
+    let border = colorStrings[keys[ keys.length * Math.random() << 0]];
+
+    if (!borderColors.includes(border)) {
+      borderColors.push(border)
+      const regex = /, 1\)/g
+      let background = border.replace(regex, `, ${opacity}`)
+      backgroundColors.push(background)
+    }
+
+    count++
+  }
+
+  return {backgroundColors, borderColors, borderWidth}
+}
+
+
+
+
+
+

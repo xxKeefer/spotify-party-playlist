@@ -134,7 +134,7 @@ const getDisplayName = async (userId) => {
 const processApiData = async (userId) => {
   try {
     let playlistUrl = await getPlaylistId(userId);
-    console.log(playlistUrl);
+    // console.log(playlistUrl);
     // if (playlistUrl === undefined) {
     //   alert('i stopped where I want')
     //   return false

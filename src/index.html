@@ -130,6 +130,7 @@
             id="playlist-cont"
             class="overflow-auto container d-none list-group"
           >
+            <h5 class="text-center mb-2">Your Banger Playlist!</h5>
             <ul id="playlist-list" class="p-0"></ul>
             <div id="output"></div>
           </div>
@@ -451,27 +452,30 @@
           </div>
 
           <!-- CHART CONTAINER -->
-          <div id="chart-cont" class="container m-0 pt-5 d-none h-auto">
+          <div id="chart-cont" class="container m-0 mt-4 pt-0 d-none h-75">
 
-            <h4 class="text-center">Here's Your Big Data of Your Playlist</h4>
-
-            <div class="row">
-              <div class="col">
+            <div class="row my-5">
+              <div class="col-6">
+                <h5 class="text-center mb-3">Bar Chart</h5>
                 <canvas id="myBarChart" width="400" height="400"></canvas>
               </div>
 
-              <div class="col">
-                <canvas id="myRadarChart" class="chartjs" width="770" height="385" style="display: block; width: 770px; height: 385px;"></canvas>
+              <div class="col-6">
+                <h5 class="text-center mb-3">Radar Chart</h5>
+                <p id="myRadarChart-alert" class="text-center mt-2 d-none font-italic">Need more than 2 users to display this graph</p>
+                <canvas id="myRadarChart" class="chartjs d-block" width="770" height="385" style="display: block; width: 770px; height: 385px;"></canvas>
               </div>
             </div>
 
-            <div class="row">
-              <div class="col">
+            <div class="row my-5">
+              <div class="col-6">
+                <h5 class="text-center mb-3">Pie Chart</h5>
                 <canvas id="myPieChart" width="400" height="400"></canvas>
               </div>
 
-              <div class="col">
-                <canvas id="myLineChart" class="chartjs" width="770" height="385" style="display: block; width: 770px; height: 385px;"></canvas>
+              <div class="col-6">
+                <h5 class="text-center mb-3">Line Chart</h5>
+                <canvas id="myLineChart" class="chartjs d-block" width="770" height="385" style="display: block; width: 770px; height: 385px;"></canvas>
               </div>
             </div>
 
