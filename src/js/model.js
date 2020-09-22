@@ -117,6 +117,7 @@ const processApiData = async (userId) => {
         release_date: t.track.album.release_date,
         popularity: t.track.popularity,
         link: t.track.external_urls.spotify,
+        id: t.track.id,
       };
       tracks.push(track);
     });
