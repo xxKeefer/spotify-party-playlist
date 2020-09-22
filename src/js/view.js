@@ -26,8 +26,8 @@ logoWordsImg.addEventListener("click", showHomePage);
 let tempDebug = document.getElementById("tempDebug");
 tempDebug.onclick = async () => {
   let data = await playlistData();
-  data = chart.filterByCommonArtists(data)
-  let dataSet = chart.getAvgPopularityByUser(data);
+  data = chart.filterByCommonArtists(data);
+  let dataSet = chart.getDecadesByUser(data);
   console.log({ dataSet });
 };
 
@@ -136,7 +136,9 @@ function generateList(dataArray) {
 
     let text = document.createElement("span");
     text.classList.add("d-inline", "pl-1");
-    text.innerHTML = `<strong>${element.artist}: </strong> ${(element.name.length > 30) ? element.name.slice(0,30) : element.name}`;
+    text.innerHTML = `<strong>${element.artist}: </strong> ${
+      element.name.length > 30 ? element.name.slice(0, 30) : element.name
+    }`;
 
     let link = document.createElement("a");
     link.classList.add("text-right", "col-9");
@@ -247,7 +249,8 @@ function generatePieChart(data, colors) {
   let dataSet = data[1];
 
   let pieData = {
-    datasets: [{
+    datasets: [
+      {
         label: "Pie Chart",
         data: dataSet,
         highlight: colors.backgroundColors,
@@ -268,16 +271,16 @@ function generatePieChart(data, colors) {
       responsive: true,
       title: {
         display: false,
-        text: 'Pie Chart'
+        text: "Pie Chart",
       },
       tooltips: {
-        mode: 'index',
+        mode: "index",
         intersect: false,
       },
       hover: {
         mode: null,
       },
-    }
+    },
   });
 }
 
@@ -286,15 +289,17 @@ function generateRadarChart(data, colors) {
   let dataSet = data[1];
 
   let radarData = {
-    datasets: [{
+    datasets: [
+      {
         label: "Your Banger Playlist",
         data: dataSet,
         backgroundColor: colors.backgroundColors[0],
         borderColor: colors.borderColors[0],
         borderWidth: colors.borderWidth,
         fill: true,
-    }],
-  
+      },
+    ],
+
     // These labels appear in the legend and in the tooltips when hovering different arcs
     labels: dataLabel,
   };
@@ -306,32 +311,31 @@ function generateRadarChart(data, colors) {
     options: {
       plugins: {
         filler: {
-            propagate: true
-        }
+          propagate: true,
+        },
       },
       scale: {
         ticks: {
-            beginAtZero: true
-        }
-      }
-    }
+          beginAtZero: true,
+        },
+      },
+    },
   });
 }
 
 function generateLineChart(data, colors) {
-
   // dataLabel is an array of strings(names)
   // dataSet is an array of arrays(of the data)
-  let dataLabels = data[0]
-  let dataSets = data[1]
+  let dataLabels = data[0];
+  let dataSets = data[1];
 
-  let dataSetArray = []
+  let dataSetArray = [];
 
   for (let i = 0; i < dataLabels.length; i++) {
     const label = dataLabels[i];
     const set = dataSets[i];
-    const border = colors.backgroundColors[i]
-    const width = colors.borderWidth[i]
+    const border = colors.backgroundColors[i];
+    const width = colors.borderWidth[i];
 
     let obj = {
       label: label,
@@ -341,8 +345,8 @@ function generateLineChart(data, colors) {
       borderWidth: width,
       fill: false,
       lineTension: 0.4,
-    }
-    dataSetArray.push(obj)
+    };
+    dataSetArray.push(obj);
   }
 
   let lineData = {
@@ -356,36 +360,40 @@ function generateLineChart(data, colors) {
     type: "line",
     data: lineData,
     options: {
-				responsive: true,
-				title: {
-					display: false,
-					text: 'Line Chart'
-				},
-				tooltips: {
-					mode: 'index',
-					intersect: false,
-				},
-				hover: {
-					mode: 'nearest',
-					intersect: true
-				},
-				scales: {
-					xAxes: [{
-						display: true,
-						scaleLabel: {
-							display: true,
-							labelString: 'Decade'
-						}
-					}],
-					yAxes: [{
-						display: true,
-						scaleLabel: {
-							display: true,
-							labelString: 'Number'
-						}
-					}]
-				}
-			}
+      responsive: true,
+      title: {
+        display: false,
+        text: "Line Chart",
+      },
+      tooltips: {
+        mode: "index",
+        intersect: false,
+      },
+      hover: {
+        mode: "nearest",
+        intersect: true,
+      },
+      scales: {
+        xAxes: [
+          {
+            display: true,
+            scaleLabel: {
+              display: true,
+              labelString: "Decade",
+            },
+          },
+        ],
+        yAxes: [
+          {
+            display: true,
+            scaleLabel: {
+              display: true,
+              labelString: "Number",
+            },
+          },
+        ],
+      },
+    },
   });
 }
 
@@ -394,7 +402,8 @@ function generateBarChart(data, colors) {
   let dataSet = data[1];
 
   let barData = {
-    datasets: [{
+    datasets: [
+      {
         label: "Banger Playlist",
         data: dataSet,
         backgroundColor: colors.backgroundColors,
@@ -409,26 +418,28 @@ function generateBarChart(data, colors) {
 
   let myBarChart = document.getElementById("myBarChart").getContext("2d");
   let barChart = new Chart(myBarChart, {
-      type: 'bar',
-      data: barData,
-      options: {
-        hover: {mode: null},
-        responsive: true,
-        legend: {
-          position: 'top',
-        },
-        title: {
-          display: false,
-          text: 'Chart.js Bar Chart'
-        },
-        scales: {
-            yAxes: [{
-                ticks: {
-                    beginAtZero: true
-                }
-            }]
-        }
-      }
+    type: "bar",
+    data: barData,
+    options: {
+      hover: { mode: null },
+      responsive: true,
+      legend: {
+        position: "top",
+      },
+      title: {
+        display: false,
+        text: "Chart.js Bar Chart",
+      },
+      scales: {
+        yAxes: [
+          {
+            ticks: {
+              beginAtZero: true,
+            },
+          },
+        ],
+      },
+    },
   });
 }
 
