@@ -180,7 +180,6 @@ export var globalColorStrings = {
   blueviolet: 'rgba(138, 43, 226, 1)',
   brown: 'rgba(165, 42, 42, 1)',
   cadetblue: 'rgba(95, 158, 160, 1)',
-  chocolate: 'rgba(210, 105, 30, 1)',
   coral: 'rgba(255, 127, 80, 1)',
   cornflowerblue: 'rgba(100, 149, 237, 1)',
   crimson: 'rgba(220, 20, 60, 1)',

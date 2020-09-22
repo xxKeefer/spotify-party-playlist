@@ -213,7 +213,12 @@ function showHomePage() {
   showElement("home-page-cont");
   showElement("form-cont");
   hideElement("not-found");
+  for (let i = 3; i <= userCount; i++) {
+    document.getElementById(`user-cont-${i}`).remove();
+  }
+  userCount = 3
 }
+
 
 function showElement(id) {
   document.getElementById(id).classList.remove("d-none");
@@ -242,8 +247,12 @@ function generateCharts(data) {
   generatePieChart(pieData, colors);
   if (pieData[0].length > 2) {
     generateRadarChart(radarData, colors);
+    hideElement("myRadarChart-alert");
+    document.getElementById('myRadarChart').style.height = '700px'
+
   } else {
     showElement("myRadarChart-alert");
+    document.getElementById('myRadarChart').style.height = '0px'
   }
   generateLineChart(lineData, colors);
   generateBarChart(barData, colors);
@@ -345,7 +354,7 @@ function generateLineChart(data, colors) {
   for (let i = 0; i < dataLabels.length; i++) {
     const label = dataLabels[i];
     const set = dataSets[i];
-    const border = colors.backgroundColors[i];
+    const border = colors.borderColors[i];
     const width = colors.borderWidth[i];
 
     let obj = {
