@@ -96,7 +96,6 @@ function filterLists(dataArray) {
   // filter that first large flattened array of objects by the artists that are in our filtered artists we just found
   let dataArrayFlatObjects = dataArray.flat()
   let filteredArray = dataArrayFlatObjects.filter(e => filteredArtists.includes(e.artist))
-
   return filteredArray;
 
 }
