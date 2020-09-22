@@ -138,6 +138,17 @@ export const getDecadesByUser = (data) => {
   return [userNames, dataSet];
 };
 
+export const getNumTracksByArtist = (data) => {
+  //TODO: filterByCommonArtists doesn't account for if both userA and userB add the same song to their lists
+  data = filterByCommonArtists(data);
+  let dataSet = [];
+  let artists = Array.from(new Set(data.map((el) => el.artist)));
+  for (let artist of artists) {
+    dataSet.push(data.filter((el) => el.artist === artist).length);
+  }
+  return [artists, dataSet];
+};
+
 var ctx = document.getElementById("myChart").getContext("2d");
 var myChart = new Chart(ctx, {
   type: "bar",
