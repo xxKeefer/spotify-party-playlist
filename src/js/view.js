@@ -213,8 +213,15 @@ function showHomePage() {
   showElement("home-page-cont");
   showElement("form-cont");
   hideElement("not-found");
-  for (let i = 3; i <= userCount; i++) {
-    document.getElementById(`user-cont-${i}`).remove();
+  // let userInputs = document.getElementsByClassName()
+  for (let i = 1; i < userCount; i++) {
+    let input = document.getElementById(`user-input-${i}`)
+    input.value = ""
+  }
+  if (userCount > 3) {
+    for (let i = 3; i <= userCount; i++) {
+      document.getElementById(`user-cont-${i}`).remove();
+    }
   }
   userCount = 3
 }
