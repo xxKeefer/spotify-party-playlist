@@ -26,7 +26,8 @@ logoWordsImg.addEventListener("click", showHomePage);
 let tempDebug = document.getElementById("tempDebug");
 tempDebug.onclick = async () => {
   let data = await playlistData();
-  let dataSet = chart.filterByCommonArtists(data);
+  data = chart.filterByCommonArtists(data);
+  let dataSet = chart.getNumTracksByArtist(data);
   console.log({ dataSet });
 };
 
@@ -61,42 +62,42 @@ function removeUserInput(num) {
 }
 
 // function filterLists(data) {
-  // // find the smallest array in the array of arrays
-  // let smallestArr = dataArray.reduce((prev, next) =>
-  //   prev.length > next.length ? next : prev
-  // );
+// // find the smallest array in the array of arrays
+// let smallestArr = dataArray.reduce((prev, next) =>
+//   prev.length > next.length ? next : prev
+// );
 
-  // // get only the artists out of the smallest array
-  // // then get the unique values from the array
-  // let smallArtist = smallestArr.map((el) => el.artist);
-  // let smallArtistUniq = Array.from(new Set(smallArtist));
+// // get only the artists out of the smallest array
+// // then get the unique values from the array
+// let smallArtist = smallestArr.map((el) => el.artist);
+// let smallArtistUniq = Array.from(new Set(smallArtist));
 
-  // // get the other arrays that aren't the smallest and flatten them into one array
-  // // get only the artists out of that flattened array of other arrays
-  // // get the unique values out of that array
-  // let flattened = dataArray.filter((arr) => arr != smallestArr).flat();
-  // let allArtistsFlat = flattened.map((el) => el.artist);
-  // let allArtistsFlatUniq = Array.from(new Set(allArtistsFlat));
+// // get the other arrays that aren't the smallest and flatten them into one array
+// // get only the artists out of that flattened array of other arrays
+// // get the unique values out of that array
+// let flattened = dataArray.filter((arr) => arr != smallestArr).flat();
+// let allArtistsFlat = flattened.map((el) => el.artist);
+// let allArtistsFlatUniq = Array.from(new Set(allArtistsFlat));
 
-  // let filteredArtists = [];
+// let filteredArtists = [];
 
-  // // loop through the smallest array of artists
-  // // and if the other array includes an artist from the smallest array of artists
-  // // then push that artist to the filtered array
-  // for (let i = 0; i < smallArtistUniq.length; i++) {
-  //   const element = smallArtistUniq[i];
-  //   if (allArtistsFlatUniq.includes(element)) {
-  //     filteredArtists.push(element);
-  //   }
-  // }
+// // loop through the smallest array of artists
+// // and if the other array includes an artist from the smallest array of artists
+// // then push that artist to the filtered array
+// for (let i = 0; i < smallArtistUniq.length; i++) {
+//   const element = smallArtistUniq[i];
+//   if (allArtistsFlatUniq.includes(element)) {
+//     filteredArtists.push(element);
+//   }
+// }
 
-  // // flatten all objects into one array to filter
-  // // filter that first large flattened array of objects by the artists that are in our filtered artists we just found
-  // let dataArrayFlatObjects = dataArray.flat();
-  // let filteredArray = dataArrayFlatObjects.filter((e) =>
-  //   filteredArtists.includes(e.artist)
-  // );
-  // return filteredArray;
+// // flatten all objects into one array to filter
+// // filter that first large flattened array of objects by the artists that are in our filtered artists we just found
+// let dataArrayFlatObjects = dataArray.flat();
+// let filteredArray = dataArrayFlatObjects.filter((e) =>
+//   filteredArtists.includes(e.artist)
+// );
+// return filteredArray;
 // }
 
 function generateList(dataArray) {
@@ -104,8 +105,7 @@ function generateList(dataArray) {
 
   // let data = filterLists(dataArray);
   let data = chart.filterByCommonArtists(dataArray);
-  generateCharts(data)
-
+  generateCharts(data);
 
   if (data.length < 1) {
     let item = document.createElement("li");
@@ -183,7 +183,6 @@ async function generatePlaylist() {
 
   let data = await playlistData();
 
-
   setTimeout(() => {
     if (generateList(data)) {
       document.getElementById("right-cont-header").textContent = "Success!!";
@@ -222,203 +221,172 @@ function hideElement(id) {
   document.getElementById(id).classList.add("d-none");
 }
 
-
-
-
-
 // CHART STUFF
 
-
 function generateCharts(data) {
-
-  let pieData = chart.getNumTracksByUser(data)
-  let radarData = chart.getAvgPopularityByUser(data)
-  let lineData = chart.getDecadesByUser(data)
-  let barData = chart.getNumTracksByArtist(data)
+  let pieData = chart.getNumTracksByUser(data);
+  let radarData = chart.getAvgPopularityByUser(data);
+  let lineData = chart.getDecadesByUser(data);
+  let barData = chart.getNumTracksByArtist(data);
   // let barData = [['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'], [12, 19, 3, 5, 2, 3]]
   // let radarData = [['Red', 'Blue', 'Yellow'],[10, 20, 30]]
   // let lineData = [['Red', 'Blue', 'Yellow'],[10, 20, 30]]
-  
-  
 
-  let amountOfColors = (pieData[0].length > 10) ? pieData[0].length : 10
-  let colors = getChartColor(amountOfColors)
-  
+  let amountOfColors = pieData[0].length > 10 ? pieData[0].length : 10;
+  let colors = getChartColor(amountOfColors);
 
-
-
-  generatePieChart(pieData, colors)
+  generatePieChart(pieData, colors);
   if (pieData[0].length > 2) {
-    generateRadarChart(radarData, colors)
+    generateRadarChart(radarData, colors);
   } else {
-    showElement('myRadarChart-alert')
+    showElement("myRadarChart-alert");
   }
-  generateLineChart(lineData, colors)
-  generateBarChart(barData, colors)
-
+  generateLineChart(lineData, colors);
+  generateBarChart(barData, colors);
 }
 
-
-
 function generatePieChart(data, colors) {
-
-  let dataLabel = data[0]
-  let dataSet = data[1]
+  let dataLabel = data[0];
+  let dataSet = data[1];
 
   let pieData = {
-    datasets: [{
+    datasets: [
+      {
         label: "Pie Chart",
         data: dataSet,
         pointHoverBackgroundColor: colors.backgroundColors,
         backgroundColor: colors.backgroundColors,
         borderWidth: colors.borderWidth,
-    }],
-  
+      },
+    ],
+
     // These labels appear in the legend and in the tooltips when hovering different arcs
     labels: dataLabel,
   };
 
-
-
-  let myPieChart = document.getElementById('myPieChart').getContext('2d');
+  let myPieChart = document.getElementById("myPieChart").getContext("2d");
   let pieChart = new Chart(myPieChart, {
-    type: 'pie',
+    type: "pie",
     data: pieData,
     // options: options
   });
-
-
 }
 
-
 function generateRadarChart(data, colors) {
-
-  let dataLabel = data[0]
-  let dataSet = data[1]
+  let dataLabel = data[0];
+  let dataSet = data[1];
 
   let radarData = {
-    datasets: [{
+    datasets: [
+      {
         label: "Radar Chart",
         data: dataSet,
         pointHoverBackgroundColor: colors.backgroundColors,
         backgroundColor: colors.backgroundColors,
         borderColor: colors.borderColors,
         borderWidth: colors.borderWidth,
-    }],
-  
+      },
+    ],
+
     // These labels appear in the legend and in the tooltips when hovering different arcs
     labels: dataLabel,
   };
 
-
-  let myRadarChart = document.getElementById('myRadarChart').getContext('2d');
+  let myRadarChart = document.getElementById("myRadarChart").getContext("2d");
   let radarChart = new Chart(myRadarChart, {
-    type: 'radar',
+    type: "radar",
     data: radarData,
     // options: options
   });
-
 }
 
-
 function generateLineChart(data, colors) {
-
-  let dataLabel = data[0]
-  let dataSet = data[1]
+  let dataLabel = data[0];
+  let dataSet = data[1];
 
   let lineData = {
-    datasets: [{
+    datasets: [
+      {
         label: "Line Chart",
         data: dataSet,
         pointHoverBackgroundColor: colors.backgroundColors,
         backgroundColor: colors.backgroundColors,
         borderColor: colors.borderColors,
         borderWidth: colors.borderWidth,
-    }],
-  
+      },
+    ],
+
     // These labels appear in the legend and in the tooltips when hovering different arcs
     labels: dataLabel,
   };
-    
-  let myLineChart = document.getElementById('myLineChart').getContext('2d');
+
+  let myLineChart = document.getElementById("myLineChart").getContext("2d");
   let lineChart = new Chart(myLineChart, {
-    type: 'line',
+    type: "line",
     data: lineData,
     // options: options
   });
-
 }
 
-
 function generateBarChart(data, colors) {
-  
-  let dataLabel = data[0]
-  let dataSet = data[1]
+  let dataLabel = data[0];
+  let dataSet = data[1];
 
   let barData = {
-    datasets: [{
+    datasets: [
+      {
         label: "Bar Chart",
         data: dataSet,
         pointHoverBackgroundColor: colors.backgroundColors,
         backgroundColor: colors.backgroundColors,
         borderColor: colors.borderColors,
         borderWidth: colors.borderWidth,
-    }],
-  
+      },
+    ],
+
     // These labels appear in the legend and in the tooltips when hovering different arcs
     labels: dataLabel,
   };
-  
-  
-  let myBarChart = document.getElementById('myBarChart').getContext('2d');
+
+  let myBarChart = document.getElementById("myBarChart").getContext("2d");
   let barChart = new Chart(myBarChart, {
-      type: 'bar',
-      data: barData,
-      options: {
-          scales: {
-              yAxes: [{
-                  ticks: {
-                      beginAtZero: true
-                  }
-              }]
-          }
-      }
+    type: "bar",
+    data: barData,
+    options: {
+      scales: {
+        yAxes: [
+          {
+            ticks: {
+              beginAtZero: true,
+            },
+          },
+        ],
+      },
+    },
   });
-
 }
-
-
-
 
 function getChartColor(num) {
-
-  let opacity = 0.4
-  let colorStrings = chart.globalColorStrings
+  let opacity = 0.4;
+  let colorStrings = chart.globalColorStrings;
   let count = 0;
-  let backgroundColors = []
-  let borderColors = []
-  let borderWidth = 1
+  let backgroundColors = [];
+  let borderColors = [];
+  let borderWidth = 1;
 
-  while(count < num) {
-
+  while (count < num) {
     let keys = Object.keys(colorStrings);
-    let border = colorStrings[keys[ keys.length * Math.random() << 0]];
+    let border = colorStrings[keys[(keys.length * Math.random()) << 0]];
 
     if (!borderColors.includes(border)) {
-      borderColors.push(border)
-      const regex = /, 1\)/g
-      let background = border.replace(regex, `, ${opacity}`)
-      backgroundColors.push(background)
+      borderColors.push(border);
+      const regex = /, 1\)/g;
+      let background = border.replace(regex, `, ${opacity}`);
+      backgroundColors.push(background);
     }
 
-    count++
+    count++;
   }
 
-  return {backgroundColors, borderColors, borderWidth}
+  return { backgroundColors, borderColors, borderWidth };
 }
-
-
-
-
-
-
