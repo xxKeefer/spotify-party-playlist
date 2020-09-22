@@ -15,3 +15,5 @@ const getAvgPopularity = (data) => {
     .reduce((acc, val) => acc + val, 0);
   return sumPopular / data.length;
 };
+
+
