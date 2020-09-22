@@ -132,11 +132,11 @@ function generateList(dataArray) {
     item.classList.add('list-group-item', 'row')
 
     let row1 = document.createElement('div')
-    row1.classList.add('row')
-    let row2 = document.createElement('div')
-    row2.classList.add('row')
+    row1.classList.add('row', 'pl-3')
+    // let row2 = document.createElement('div')
+    // row2.classList.add('row')
     let row3 = document.createElement('div')
-    row3.classList.add('row')
+    row3.classList.add('row', 'pl-2')
 
     let imgSpan = document.createElement('span')
     imgSpan.classList.add('col-3', 'd-inline')
@@ -146,29 +146,39 @@ function generateList(dataArray) {
     img.src = 'img/music_note.png'
     img.alt = ""
 
-    let artist = document.createElement('span')
-    artist.classList.add('col-9', 'd-inline', 'm-0')
-    artist.innerHTML = `<strong>${element.artist}</strong>`
+    
+    let text = document.createElement('span')
+    // artist.classList.add('col-4', 'd-inline', 'm-0')
+    text.classList.add('d-inline', 'pl-1')
+    text.innerHTML = `<strong>${element.artist}: </strong> ${element.name}`
+    
+    // let artist = document.createElement('span')
+    // artist.classList.add('d-inline', 'pl-1')
+    // artist.innerHTML = `<strong>${element.artist}: </strong> ${element.name}`
 
-    let track = document.createElement('p')
-    track.classList.add('col', 'font-italic', 'm-0', 'ml-2')
-    track.innerHTML = `${element.name}`
+    // let track = document.createElement('span')
+    // track.classList.add('font-italic', 'm-0')
+    // track.innerHTML = `${element.name}`
 
     let link = document.createElement('a')
     link.classList.add('text-right', 'col-9')
     link.style.cursor = 'pointer'
     link.textContent = 'Open in Spotify'
+    link.href = element.link
+    link.setAttribute('target', '_blank');
 
-    row1.appendChild(artist)
-
-    row2.appendChild(track)
+    row1.appendChild(text)
+    
+    // row1.appendChild(artist)
+    // row1.appendChild(track)
+    // row2.appendChild(track)
 
     imgSpan.appendChild(img)
     row3.appendChild(imgSpan)
     row3.appendChild(link)
 
     item.appendChild(row1)
-    item.appendChild(row2)
+    // item.appendChild(row2)
     item.appendChild(row3)
 
     list.appendChild(item)

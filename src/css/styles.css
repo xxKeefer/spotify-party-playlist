@@ -63,6 +63,11 @@ body .footer .container .footer-social-icons {
   height: 82%;
 }
 
+.container .wrapper #left-cont #playlist-cont #playlist-list .list-group-item {
+  border-left: none !important;
+  border-right: none !important;
+}
+
 .container .wrapper #right-cont #loadingPlaylistGif {
   width: 10%;
 }
