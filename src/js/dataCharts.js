@@ -89,6 +89,14 @@ export const getNumTracksByUser = (data) => {
 
 export const getDecadesByUser = (data) => {
   //TODO: filterByCommonArtists doesn't account for if both userA and userB add the same song to their lists
+  // find ratios for weighted average
+  const contributedData = getNumTracksByUser(data);
+  let totalTracks = contributedData[1].reduce((acc, val) => acc + val);
+  let weights = [];
+  for (let amount of contributedData[1]) {
+    weights.push(totalTracks / amount);
+  }
+
   let dataSet = [];
   let userNames = Array.from(new Set(data.map((el) => el.username)));
   for (let user of userNames) {
@@ -134,7 +142,9 @@ export const getDecadesByUser = (data) => {
           break;
       }
     }
-    dataSet.push(Object.values(dates));
+    let userWeight = weights[userNames.indexOf(user)];
+    console.log({ userWeight });
+    dataSet.push(Object.values(dates).map((el) => Math.round(el * userWeight)));
   }
   return [userNames, dataSet];
 };

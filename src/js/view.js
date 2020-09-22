@@ -27,7 +27,7 @@ let tempDebug = document.getElementById("tempDebug");
 tempDebug.onclick = async () => {
   let data = await playlistData();
   data = chart.filterByCommonArtists(data);
-  let dataSet = chart.getNumTracksByArtist(data);
+  let dataSet = chart.getDecadesByUser(data);
   console.log({ dataSet });
 };
 
