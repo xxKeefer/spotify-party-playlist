@@ -26,7 +26,7 @@ logoWordsImg.addEventListener("click", showHomePage);
 let tempDebug = document.getElementById("tempDebug");
 tempDebug.onclick = async () => {
   let data = await playlistData();
-  let dataSet = chart.getNumTracksByUser(data);
+  let dataSet = chart.getNumTracksByArtist(data);
   console.log({ dataSet });
 };
 
@@ -267,6 +267,7 @@ function generatePieChart(data, colors) {
 
   let pieData = {
     datasets: [{
+        label: "Pie Chart",
         data: dataSet,
         pointHoverBackgroundColor: colors.backgroundColors,
         backgroundColor: colors.backgroundColors,
@@ -297,6 +298,7 @@ function generateRadarChart(data, colors) {
 
   let radarData = {
     datasets: [{
+        label: "Radar Chart",
         data: dataSet,
         pointHoverBackgroundColor: colors.backgroundColors,
         backgroundColor: colors.backgroundColors,
@@ -326,6 +328,7 @@ function generateLineChart(data, colors) {
 
   let lineData = {
     datasets: [{
+        label: "Line Chart",
         data: dataSet,
         pointHoverBackgroundColor: colors.backgroundColors,
         backgroundColor: colors.backgroundColors,
@@ -354,6 +357,7 @@ function generateBarChart(data, colors) {
 
   let barData = {
     datasets: [{
+        label: "Bar Chart",
         data: dataSet,
         pointHoverBackgroundColor: colors.backgroundColors,
         backgroundColor: colors.backgroundColors,

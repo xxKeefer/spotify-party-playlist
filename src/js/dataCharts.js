@@ -1,21 +1,3 @@
-export const testFunc = async (apiCall) => {
-  let data = await apiCall;
-  console.log(data);
-};
-
-export const processData = async (apiCall) => {
-  let data = await apiCall;
-  console.log(getAvgPopularity(data));
-};
-
-const getAvgPopularity = (data) => {
-  data = data.flat();
-  let sumPopular = data
-    .map((el) => el.popularity)
-    .reduce((acc, val) => acc + val, 0);
-  return sumPopular / data.length;
-};
-
 export const filterByCommonArtists = (data) => {
   let commonArrays = [];
   let flatData = data.flat();
@@ -61,7 +43,40 @@ export const filterByCommonArtists = (data) => {
   return sortedData;
 };
 
+// this was an idea i had to have like one monolith function the returns an object with all the datasets for all charts
+export const processData = async (apiCall) => {
+  let data = await apiCall;
+  // dataProcessingFunctions(data) go here
+  // another one,
+};
+
+const getAvgPopularity = (data) => {
+  data = data.flat();
+  let sumPopular = data
+    .map((el) => el.popularity)
+    .reduce((acc, val) => acc + val, 0);
+  return sumPopular / data.length;
+};
+
+export const getAvgPopularityByUser = (data) => {
+  //TODO: filterByCommonArtists doesn't account for if both userA and userB add the same song to their lists
+  data = filterByCommonArtists(data);
+  let dataSet = [];
+  let userNames = Array.from(new Set(data.map((el) => el.username)));
+  for (let user of userNames) {
+    let usersSongs = data.filter((song) => song.username === user);
+    let usersPopularity = usersSongs
+      .map((el) => el.popularity)
+      .reduce((acc, val) => acc + val, 0);
+    let truncate =
+      Math.floor((usersPopularity / usersSongs.length) * 100) / 100;
+    dataSet.push(truncate);
+  }
+  return [userNames, dataSet];
+};
+
 export const getNumTracksByUser = (data) => {
+  //TODO: filterByCommonArtists doesn't account for if both userA and userB add the same song to their lists
   // data = filterByCommonArtists(data);
   let dataSet = [];
   let userNames = Array.from(new Set(data.map((el) => el.username)));
@@ -70,6 +85,71 @@ export const getNumTracksByUser = (data) => {
     dataSet.push(contributed.length);
   }
   return [userNames, dataSet];
+};
+
+
+export const getDecadesByUser = (data) => {
+  //TODO: filterByCommonArtists doesn't account for if both userA and userB add the same song to their lists
+  data = filterByCommonArtists(data);
+  let dataSet = [];
+  let userNames = Array.from(new Set(data.map((el) => el.username)));
+  for (let user of userNames) {
+    let usersSongs = data.filter((song) => song.username === user);
+    let dates = {
+      "20s": 0,
+      "10s": 0,
+      "00s": 0,
+      "90s": 0,
+      "80s": 0,
+      "70s": 0,
+      "60s": 0,
+      "50s": 0,
+    };
+    for (let song of usersSongs) {
+      switch (true) {
+        case /\d{2}2\d-\d{2}-\d{2}/.test(song.release_date):
+          dates["20s"]++;
+          break;
+        case /\d{2}1\d-\d{2}-\d{2}/.test(song.release_date):
+          dates["10s"]++;
+          break;
+        case /\d{2}0\d-\d{2}-\d{2}/.test(song.release_date):
+          dates["00s"]++;
+          break;
+        case /\d{2}9\d-\d{2}-\d{2}/.test(song.release_date):
+          dates["90s"]++;
+          break;
+        case /\d{2}8\d-\d{2}-\d{2}/.test(song.release_date):
+          dates["80s"]++;
+          break;
+        case /\d{2}7\d-\d{2}-\d{2}/.test(song.release_date):
+          dates["70s"]++;
+          break;
+        case /\d{2}6\d-\d{2}-\d{2}/.test(song.release_date):
+          dates["60s"]++;
+          break;
+        case /\d{2}5\d-\d{2}-\d{2}/.test(song.release_date):
+          dates["50s"]++;
+          break;
+        // skip songs with missing date data
+        default:
+          break;
+      }
+    }
+    dataSet.push(Object.values(dates));
+  }
+  return [userNames, dataSet];
+};
+
+export const getNumTracksByArtist = (data) => {
+  //TODO: filterByCommonArtists doesn't account for if both userA and userB add the same song to their lists
+  data = filterByCommonArtists(data);
+  let dataSet = [];
+  let artists = Array.from(new Set(data.map((el) => el.artist)));
+  for (let artist of artists) {
+    dataSet.push(data.filter((el) => el.artist === artist).length);
+  }
+  return [artists, dataSet];
 };
 
 
@@ -223,5 +303,3 @@ export var globalColorStrings = {
   yellow: 'rgba(255, 255, 0, 1)',
   yellowgreen: 'rgba(154, 205, 50, 1)'
 }
-
-
