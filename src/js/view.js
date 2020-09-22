@@ -105,13 +105,19 @@ function generateList(dataArray) {
     img.alt = ""
 
     let text = document.createElement('p')
-    text.classList.add('col-10')
+    text.classList.add('col-8')
     text.style.display = 'inline-block'
     text.innerHTML = `<strong>${element.artist}:</strong> ${element.name}`
     text.style.margin = 0
-    
+
+    let link = document.createElement('a')
+    link.classList.add('text-right', 'col-3')
+    link.style.cursor = 'pointer'
+    link.textContent = 'Open in Spotify'
+
     item.appendChild(img)
     item.appendChild(text)
+    item.appendChild(link)
 
     list.appendChild(item)
   });
