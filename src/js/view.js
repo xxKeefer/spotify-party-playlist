@@ -102,8 +102,8 @@ function filterLists(dataArray) {
 function generateList(dataArray) {
   let list = document.getElementById("playlist-list");
 
-  // let data = filterLists(dataArray);
-  let data = chart.filterByCommonArtists(dataArray);
+  let data = filterLists(dataArray);
+  // let data = chart.filterByCommonArtists(dataArray);
 
   if (data.length < 1) {
     let item = document.createElement("li");
@@ -132,6 +132,11 @@ function generateList(dataArray) {
     img.src = "img/music_note.png";
     img.alt = "";
 
+    let img = document.createElement("img");
+    img.style.width = "50%";
+    img.src = "img/music_note.png";
+    img.alt = "";
+
     let text = document.createElement("span");
     text.classList.add("d-inline", "pl-1");
     text.innerHTML = `<strong>${element.artist}: </strong> ${element.name}`;
@@ -150,7 +155,6 @@ function generateList(dataArray) {
     row2.appendChild(link);
 
     item.appendChild(row1);
-    // item.appendChild(row2)
     item.appendChild(row2);
 
     list.appendChild(item);
@@ -188,6 +192,7 @@ async function generatePlaylist() {
         "Here's your banger playlist!";
       hideElement("form-cont");
       showElement("playlist-cont");
+      showElement("chart-cont");
     } else {
       document.getElementById("right-cont-header").textContent = "Uh Oh!";
       document.getElementById("right-cont-sub-header").textContent =
@@ -203,8 +208,9 @@ async function generatePlaylist() {
 
 function showHomePage() {
   hideElement("playlist-cont");
-  hideElement("playlist-cont");
+  hideElement("chart-cont");
   showElement("home-page-cont");
+  showElement("form-cont");
 }
 
 function showElement(id) {
