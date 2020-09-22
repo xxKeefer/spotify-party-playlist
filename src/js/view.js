@@ -86,7 +86,8 @@ function filterLists(dataArray) {
 function generateList(dataArray) {
   let list = document.getElementById("playlist-list");
 
-  let data = filterLists(dataArray);
+  // let data = filterLists(dataArray);
+  let data = chart.filterByCommonArtists(dataArray);
 
   if (data.length < 1) {
     let item = document.createElement("li");
