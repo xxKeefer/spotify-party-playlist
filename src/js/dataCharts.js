@@ -42,9 +42,16 @@ export const filterByCommonArtists = (data) => {
   });
 };
 
-
-
-
+export const getNumTracksByUser = (data) => {
+  data = filterByCommonArtists(data);
+  let dataSet = [];
+  let userNames = Array.from(new Set(data.map((el) => el.username)));
+  for (let user of userNames) {
+    let contributed = data.filter((song) => song.username === user);
+    dataSet.push(contributed.length);
+  }
+  return [userNames, dataSet];
+};
 
 
 let backgroundColors = [
