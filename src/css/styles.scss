@@ -55,15 +55,25 @@ body {
           }
         }
       }
+
+      #playlist-cont {
+          height: 82%;
+          #playlist-list {
+            .list-group-item {
+              border-left: none !important;
+              border-right: none !important;
+              // padding-left: 5% !important;
+              // padding-right: 2% !important;
+          }
+        }
+      }
     }
 
     #right-cont {
       #loadingPlaylistGif {
         width: 10%;
       }
-      #playlist-cont {
-        height: 95%;
-      }
+
     }
   }
 }

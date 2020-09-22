@@ -54,6 +54,9 @@ const getPlaylistId = async (
 
   try {
     let raw = await fetch(endpointUrl, requestOptions);
+    if (raw.status == 404) {
+      alert('now im here')
+    }
     let res = await raw.json();
 
     let playlistEndpoint;
@@ -85,7 +88,12 @@ const getPlaylistItems = async (endpointUrl) => {
   let allItems = [];
   while (true) {
     try {
-      let raw = await fetch(endpointUrl, requestOptions);
+      let raw = await fetch(endpointUrl, requestOptions)
+      console.log(raw);
+      if (raw.status == 404) {
+        alert('i found an error')
+        // throw
+      }
       let res = await raw.json();
       endpointUrl = res.next;
       let newItems = res.items;
@@ -94,7 +102,7 @@ const getPlaylistItems = async (endpointUrl) => {
         break;
       }
     } catch (e) {
-      console.error(e);
+      console.error({ e });
       break;
     }
   }
@@ -105,6 +113,11 @@ const getPlaylistItems = async (endpointUrl) => {
 const processApiData = async (userId) => {
   try {
     let playlistUrl = await getPlaylistId(userId);
+    console.log(playlistUrl);
+    if (playlistUrl === undefined) {
+      alert('i stopped where I want')
+      return false
+    }
     let playlistItems = await getPlaylistItems(playlistUrl);
 
     let tracks = [];

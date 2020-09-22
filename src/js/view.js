@@ -16,7 +16,6 @@ addUserIdButton.addEventListener("click", () => {
 });
 
 let generatePlaylistButton = document.getElementById("generatePlaylistButton");
-// generatePlaylistButton.addEventListener('click', () => {generatePlaylist(playlistData)})
 generatePlaylistButton.addEventListener("click", generatePlaylist);
 
 let logoImg = document.getElementById("logo");
@@ -60,27 +59,45 @@ function removeUserInput(num) {
   document.getElementById(`user-cont-${num}`).remove();
 }
 
+
+
 function filterLists(dataArray) {
+
+  // find the smallest array in the array of arrays
   let smallestArr = dataArray.reduce((prev, next) =>
     prev.length > next.length ? next : prev
   );
 
-  const filteredArray = smallestArr.filter((el) => {
-    for (let i = 0; i < dataArray.length; i++) {
-      // loop the the dataArray, and if the current element it's looking at is the smallest array, skip it
-      // otherwise filter through the remaining elements in the dataArray
-      if (dataArray[i] === smallestArr) {
-        continue;
-      } else {
-        return dataArray[i].some((f) => {
-          // return f.name === el.name && f.artist === el.artist;
-          return f.artist === el.artist;
-        });
-      }
-    }
-  });
+  // get only the artists out of the smallest array
+  // then get the unique values from the array
+  let smallArtist = smallestArr.map((el) => el.artist);
+  let smallArtistUniq = Array.from(new Set(smallArtist));
 
+  // get the other arrays that aren't the smallest and flatten them into one array
+  // get only the artists out of that flattened array of other arrays
+  // get the unique values out of that array
+  let flattened = dataArray.filter(arr => arr != smallestArr).flat()
+  let allArtistsFlat = flattened.map((el) => el.artist);
+  let allArtistsFlatUniq = Array.from(new Set(allArtistsFlat));
+
+  let filteredArtists = []
+
+  // loop through the smallest array of artists
+  // and if the other array includes an artist from the smallest array of artists
+  // then push that artist to the filtered array
+  for (let i = 0; i < smallArtistUniq.length; i++) {
+    const element = smallArtistUniq[i];
+    if (allArtistsFlatUniq.includes(element)) {
+      filteredArtists.push(element)
+    }
+  }
+
+  // flatten all objects into one array to filter
+  // filter that first large flattened array of objects by the artists that are in our filtered artists we just found
+  let dataArrayFlatObjects = dataArray.flat()
+  let filteredArray = dataArrayFlatObjects.filter(e => filteredArtists.includes(e.artist))
   return filteredArray;
+
 }
 
 function generateList(dataArray) {
@@ -97,35 +114,48 @@ function generateList(dataArray) {
     return false;
   }
 
-  hideElement("not-found");
+  hideElement('not-found')
 
-  data.forEach((element) => {
-    let item = document.createElement("li");
-    item.classList.add("list-group-item", "row");
+  data.forEach(element => {
+    let item = document.createElement('li')
+    item.classList.add('list-group-item', 'row')
 
-    let img = document.createElement("img");
-    img.style = "width: 9%;";
-    img.classList.add("col-2");
-    img.style.display = "inline-block";
-    img.src = "img/music_note.png";
-    img.alt = "";
+    let row1 = document.createElement('div')
+    row1.classList.add('row', 'pl-3')
+    let row2 = document.createElement('div')
+    row2.classList.add('row', 'pl-2')
 
-    let text = document.createElement("p");
-    text.classList.add("col-8");
-    text.style.display = "inline-block";
-    text.innerHTML = `<strong>${element.artist}:</strong> ${element.name}`;
-    text.style.margin = 0;
+    let imgSpan = document.createElement('span')
+    imgSpan.classList.add('col-3', 'd-inline')
 
-    let link = document.createElement("a");
-    link.classList.add("text-right", "col-3");
-    link.style.cursor = "pointer";
-    link.textContent = "Open in Spotify";
+    let img = document.createElement('img')
+    img.style.width = "50%"
+    img.src = 'img/music_note.png'
+    img.alt = ""
 
-    item.appendChild(img);
-    item.appendChild(text);
-    item.appendChild(link);
+    
+    let text = document.createElement('span')
+    text.classList.add('d-inline', 'pl-1')
+    text.innerHTML = `<strong>${element.artist}: </strong> ${element.name}`
+    
+    let link = document.createElement('a')
+    link.classList.add('text-right', 'col-9')
+    link.style.cursor = 'pointer'
+    link.textContent = 'Open in Spotify'
+    link.href = element.link
+    link.setAttribute('target', '_blank');
 
-    list.appendChild(item);
+    row1.appendChild(text)
+
+    imgSpan.appendChild(img)
+    row2.appendChild(imgSpan)
+    row2.appendChild(link)
+
+    item.appendChild(row1)
+    // item.appendChild(row2)
+    item.appendChild(row2)
+
+    list.appendChild(item)
   });
 
   return true;
@@ -158,6 +188,7 @@ async function generatePlaylist() {
       document.getElementById("right-cont-header").textContent = "Success!!";
       document.getElementById("right-cont-sub-header").textContent =
         "Here's your banger playlist!";
+      hideElement('form-cont')
       showElement("playlist-cont");
     } else {
       document.getElementById("right-cont-header").textContent = "Uh Oh!";
@@ -173,6 +204,7 @@ async function generatePlaylist() {
 }
 
 function showHomePage() {
+  hideElement('playlist-cont')
   hideElement("playlist-cont");
   showElement("home-page-cont");
 }
