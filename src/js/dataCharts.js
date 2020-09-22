@@ -121,7 +121,13 @@ var borderColors2 = [
 // 	grey: 'rgb(201, 203, 207)'
 // };
 
+// var dataSet = getNumTracksByUser()
+
+// var pieDataSet = dataSet[0]
+// var pieLabels = dataSet[1]
+
 var randomData = [10, 20, 30]
+var randomLabels = ['Red', 'Blue', 'Yellow']
 
 let pieData = {
   datasets: [{
@@ -131,11 +137,7 @@ let pieData = {
   }],
 
   // These labels appear in the legend and in the tooltips when hovering different arcs
-  labels: [
-      'Red',
-      'Blue',
-      'Yellow'
-  ]
+  labels: randomLabels,
 };
 
 let radarData = {
