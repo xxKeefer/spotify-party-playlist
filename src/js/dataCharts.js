@@ -85,6 +85,59 @@ export const getNumTracksByUser = (data) => {
   return [userNames, dataSet];
 };
 
+export const getDecadesByUser = (data) => {
+  //TODO: filterByCommonArtists doesn't account for if both userA and userB add the same song to their lists
+  data = filterByCommonArtists(data);
+  let dataSet = [];
+  let userNames = Array.from(new Set(data.map((el) => el.username)));
+  for (let user of userNames) {
+    let usersSongs = data.filter((song) => song.username === user);
+    let dates = {
+      "20s": 0,
+      "10s": 0,
+      "00s": 0,
+      "90s": 0,
+      "80s": 0,
+      "70s": 0,
+      "60s": 0,
+      "50s": 0,
+    };
+    for (let song of usersSongs) {
+      switch (true) {
+        case /\d{2}2\d-\d{2}-\d{2}/.test(song.release_date):
+          dates["20s"]++;
+          break;
+        case /\d{2}1\d-\d{2}-\d{2}/.test(song.release_date):
+          dates["10s"]++;
+          break;
+        case /\d{2}0\d-\d{2}-\d{2}/.test(song.release_date):
+          dates["00s"]++;
+          break;
+        case /\d{2}9\d-\d{2}-\d{2}/.test(song.release_date):
+          dates["90s"]++;
+          break;
+        case /\d{2}8\d-\d{2}-\d{2}/.test(song.release_date):
+          dates["80s"]++;
+          break;
+        case /\d{2}7\d-\d{2}-\d{2}/.test(song.release_date):
+          dates["70s"]++;
+          break;
+        case /\d{2}6\d-\d{2}-\d{2}/.test(song.release_date):
+          dates["60s"]++;
+          break;
+        case /\d{2}5\d-\d{2}-\d{2}/.test(song.release_date):
+          dates["50s"]++;
+          break;
+        // skip songs with missing date data
+        default:
+          break;
+      }
+    }
+    dataSet.push(Object.values(dates));
+  }
+  return [userNames, dataSet];
+};
+
 var ctx = document.getElementById("myChart").getContext("2d");
 var myChart = new Chart(ctx, {
   type: "bar",
