@@ -20,7 +20,6 @@ export default async () => {
     const userDataArray = await Promise.all(apiCalls);
     for (let res of userDataArray) {
       if (res.hasOwnProperty("error")) {
-        console.log({ res });
         return res;
       }
     }
