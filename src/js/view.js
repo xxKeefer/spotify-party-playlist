@@ -235,17 +235,11 @@ function generateCharts(data) {
   let radarData = chart.getAvgPopularityByUser(data)
   let lineData = chart.getDecadesByUser(data)
   let barData = chart.getNumTracksByArtist(data)
-  // let barData = [['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'], [12, 19, 3, 5, 2, 3]]
-  // let radarData = [['Red', 'Blue', 'Yellow'],[10, 20, 30]]
-  // let lineData = [['Red', 'Blue', 'Yellow'],[10, 20, 30]]
-  
   
 
   let amountOfColors = (pieData[0].length > 10) ? pieData[0].length : 10
   let colors = getChartColor(amountOfColors)
   
-
-
 
   generatePieChart(pieData, colors)
   if (pieData[0].length > 2) {
