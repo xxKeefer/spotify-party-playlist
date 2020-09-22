@@ -23,13 +23,13 @@ let logoWordsImg = document.getElementById("logo-words");
 logoImg.addEventListener("click", showHomePage);
 logoWordsImg.addEventListener("click", showHomePage);
 
-let tempDebug = document.getElementById("tempDebug");
-tempDebug.onclick = async () => {
-  let data = await playlistData();
-  data = chart.filterByCommonArtists(data);
-  let dataSet = chart.getDecadesByUser(data);
-  console.log({ dataSet });
-};
+// let tempDebug = document.getElementById("tempDebug");
+// tempDebug.onclick = async () => {
+//   let data = await playlistData();
+//   data = chart.filterByCommonArtists(data);
+//   let dataSet = chart.getDecadesByUser(data);
+//   console.log({ dataSet });
+// };
 
 // FUNCTIONS
 
