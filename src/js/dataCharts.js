@@ -95,14 +95,14 @@ export const getDecadesByUser = (data) => {
   for (let user of userNames) {
     let usersSongs = data.filter((song) => song.username === user);
     let dates = {
-      "20s": 0,
-      "10s": 0,
-      "00s": 0,
-      "90s": 0,
-      "80s": 0,
-      "70s": 0,
-      "60s": 0,
       "50s": 0,
+      "60s": 0,
+      "70s": 0,
+      "80s": 0,
+      "90s": 0,
+      "00s": 0,
+      "10s": 0,
+      "20s": 0,
     };
     for (let song of usersSongs) {
       switch (true) {
