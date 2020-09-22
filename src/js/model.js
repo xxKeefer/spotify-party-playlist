@@ -110,7 +110,7 @@ const getPlaylistItems = async (endpointUrl) => {
 };
 
 const getDisplayName = async (userId) => {
-  let endpoint = `https://api.spotify.com/v1/users/${userId}`;
+  let endpointUrl = `https://api.spotify.com/v1/users/${userId}`;
   let auth = await getAuthToken();
   var myHeaders = new Headers();
   myHeaders.append("Authorization", "Bearer " + auth.access_token);
