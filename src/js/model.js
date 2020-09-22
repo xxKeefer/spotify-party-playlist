@@ -118,6 +118,7 @@ const processApiData = async (userId) => {
         popularity: t.track.popularity,
         link: t.track.external_urls.spotify,
         id: t.track.id,
+        from_user: t.added_by.id,
       };
       tracks.push(track);
     });
