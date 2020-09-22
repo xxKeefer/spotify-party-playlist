@@ -96,6 +96,7 @@ function filterLists(dataArray) {
   // filter that first large flattened array of objects by the artists that are in our filtered artists we just found
   let dataArrayFlatObjects = dataArray.flat()
   let filteredArray = dataArrayFlatObjects.filter(e => filteredArtists.includes(e.artist))
+  console.log(filteredArray);
   return filteredArray;
 
 }
@@ -104,7 +105,6 @@ function generateList(dataArray) {
   let list = document.getElementById("playlist-list");
 
   let data = filterLists(dataArray);
-  // let data = chart.filterByCommonArtists(dataArray);
 
   if (data.length < 1) {
     let item = document.createElement("li");

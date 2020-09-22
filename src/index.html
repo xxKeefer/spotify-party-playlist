@@ -462,9 +462,30 @@
 
 
           <!-- CHART CONTAINER -->
-          <div id="chart-cont" class="container m-0 d-none pt-5">
-            <h4 class="">Here's Your Big Data of Your Playlist</h4>
-            <canvas id="myChart" width="400" height="400"></canvas>
+          <div id="chart-cont" class="container m-0 pt-5 d-none">
+
+            <h4 class="text-center">Here's Your Big Data of Your Playlist</h4>
+
+            <div class="row">
+              <div class="col">
+                <canvas id="myBarChart" width="400" height="400"></canvas>
+              </div>
+
+              <div class="col">
+                <canvas id="myRadarChart" class="chartjs" width="770" height="385" style="display: block; width: 770px; height: 385px;"></canvas>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col">
+                <canvas id="myPieChart" width="400" height="400"></canvas>
+              </div>
+
+              <div class="col">
+                <canvas id="myLineChart" class="chartjs" width="770" height="385" style="display: block; width: 770px; height: 385px;"></canvas>
+              </div>
+            </div>
+
           </div>
 
 
