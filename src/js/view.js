@@ -1,5 +1,4 @@
-import apiData from "./controller.js";
-import { getUserInputs } from "./controller.js";
+import apiData, { getUserInputs } from "./controller.js";
 import * as chart from "./dataCharts.js";
 let playlistData = async () => {
   return await apiData();
@@ -61,44 +60,6 @@ function removeUserInput(num) {
   document.getElementById(`user-cont-${num}`).remove();
 }
 
-// function filterLists(data) {
-// // find the smallest array in the array of arrays
-// let smallestArr = dataArray.reduce((prev, next) =>
-//   prev.length > next.length ? next : prev
-// );
-
-// // get only the artists out of the smallest array
-// // then get the unique values from the array
-// let smallArtist = smallestArr.map((el) => el.artist);
-// let smallArtistUniq = Array.from(new Set(smallArtist));
-
-// // get the other arrays that aren't the smallest and flatten them into one array
-// // get only the artists out of that flattened array of other arrays
-// // get the unique values out of that array
-// let flattened = dataArray.filter((arr) => arr != smallestArr).flat();
-// let allArtistsFlat = flattened.map((el) => el.artist);
-// let allArtistsFlatUniq = Array.from(new Set(allArtistsFlat));
-
-// let filteredArtists = [];
-
-// // loop through the smallest array of artists
-// // and if the other array includes an artist from the smallest array of artists
-// // then push that artist to the filtered array
-// for (let i = 0; i < smallArtistUniq.length; i++) {
-//   const element = smallArtistUniq[i];
-//   if (allArtistsFlatUniq.includes(element)) {
-//     filteredArtists.push(element);
-//   }
-// }
-
-// // flatten all objects into one array to filter
-// // filter that first large flattened array of objects by the artists that are in our filtered artists we just found
-// let dataArrayFlatObjects = dataArray.flat();
-// let filteredArray = dataArrayFlatObjects.filter((e) =>
-//   filteredArtists.includes(e.artist)
-// );
-// return filteredArray;
-// }
 
 function generateList(dataArray) {
   let list = document.getElementById("playlist-list");
@@ -185,6 +146,14 @@ async function generatePlaylist() {
 
   let data = await playlistData();
 
+  if (data.hasOwnProperty('error')) {
+    alert(data.msg)
+    showHomePage()
+    return
+  }
+
+  console.log({ data });
+
   setTimeout(() => {
     if (generateList(data)) {
       document.getElementById("right-cont-header").textContent = "Success!!";
@@ -210,9 +179,10 @@ async function generatePlaylist() {
 function showHomePage() {
   hideElement("playlist-cont");
   hideElement("chart-cont");
+  hideElement("not-found");
+  hideElement('loading-cont')
   showElement("home-page-cont");
   showElement("form-cont");
-  hideElement("not-found");
   // let userInputs = document.getElementsByClassName()
   for (let i = 1; i < userCount; i++) {
     let input = document.getElementById(`user-input-${i}`)
@@ -414,7 +384,7 @@ function generateLineChart(data, colors) {
             display: true,
             scaleLabel: {
               display: true,
-              labelString: "Number",
+              labelString: "Preferences",
             },
           },
         ],
