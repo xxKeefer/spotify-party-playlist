@@ -1,7 +1,7 @@
 # xxKeefer and Simo_Sultan's Spotify Party Playlist Maker
 
-The app: [Spotify-PPM](https://driving-lesson-marketplace.herokuapp.com/)  
-Source code: [Spotify-PPM](https://github.com/SimoSultan/dlm)
+The app: [Spotify-PPM](https://spotify-party-playlist-maker.netlify.app/)  
+Source code: [Spotify-PPM](https://github.com/SimoSultan/spotify-party-playlist)
 
 [simonmcurran.com](https://www.simonmcurran.com/)  
 ![SimoSultan's GitHub](https://img.shields.io/github/followers/SimoSultan?logo=GitHub&style=for-the-badge)  
@@ -31,7 +31,10 @@ Source code: [Spotify-PPM](https://github.com/SimoSultan/dlm)
 
 The idea behind this app came from the situations when we have been to friend's places and wanted to choose some music to play. A lot of the times our mates and ourselves will have some similar songs in common, but we don't want to spend the time building a playlist as we want to hang out with our mates. So, this is where the Spotify Party Playlist Maker comes in. Put in your user names of the friends involved and let us build the playlist for you whilst you get to hang out with your mates. Then play the playlist from the browser or 'follow' the playlist to add it to your own account. 
 
+### UPDATE: After Finishing MVP
 
+We found out that we didn't have the time in the 2.5 days to learn how to create the playlist on Spotify for people to be able to follow the playlist. So for now, we added the links to each song, but in the near future we will add this implementation to make it feel more complete.
+We wanted to focus on the visualisation of the data instead of the playlist follow idea. Also, we filtered based on common artists instead of exact songs as we wanted the list to be of a decent size for users.
 
 ---
 
@@ -40,49 +43,48 @@ The idea behind this app came from the situations when we have been to friend's 
 ## Features	
 
 ### Current features:  
-- users input their Spotify user IDs and a playlist of common 'liked' songs will be generated
-- play the music from the browser window
-- follow the playlist to add it to ones own account
+- users input their Spotify user IDs and a playlist of common 'liked' artists will be generated
+- visualize the data of the list of songs generated
+  - showing who contributed how many songs to the list
+  - what decade the majority of the songs come from
+  - comparison of who liked the most obscure vs mainstream music
+  - the artists who contributed the most songs to the list
 
 ### Future features:
 
-
+- for the list of songs to be created on Spotify so users can then follow the playlist
+- for the app to show the list of all the users public playlists and then compare chosen playlists
 
 ---
 
 
 
-## Tech Stack
+## Tech Stack and Resources
 
 - HTML
 - CSS
 - SASS
 - JavaScript
-- Git
-- Bootstrap 4
-- Netlify
-- Spotify Web API
-- Chart.js
 
----
+### Netlify
+- [Netlify](https://www.netlify.com/)
+  - for deployment
 
+### Bootstrap 4
+- [Bootstrap 4](https://getbootstrap.com/)
+  - for the styling
 
-
-## Resources
-
-- Bootstrap 4 was used for front-end framework
-- Git and GitHub for version control
-- Netlify for deployment
-
-### Node Modules Used
-- [Chart.js](https://github.com/chartjs/Chart.js)
-  - for user authentication
+### Spotify Web API
 - [Spotify Web API](https://developer.spotify.com/documentation/web-api/)
-  - for image upload
+  - for the data
 
-<!-- ### Icons
-- [Capicon](https://mariodelvalle.github.io/CaptainIconWeb/)
-  - not currently being used but will implement in future update -->
+### Chart.js
+- [Chart.js](https://github.com/chartjs/Chart.js)
+  - for the data visualisation
+
+### Icons
+- [Font Awesome](https://fontawesome.com/)
+  - for the GitHub and Twitter icons in the footer
 
 ### Images
 - [Canva](https://www.canva.com/design/DAEIOVa5ems/q-Y-EyYIIxNcoSLm1ATabA/edit)
@@ -91,14 +93,14 @@ The idea behind this app came from the situations when we have been to friend's 
 ### Animations
 - [Jhey's Hifi Animation](https://codepen.io/jh3y/pen/rNxjPNX)
   - Jhey's bouncing speakers on the loading page
-- [Loading Text Animation](https://codepen.io/brunjo/pen/ByjRPy)
-  - the loading animation displayed when the playlist is loading
 
 ### Page Templates
-- [404 Page #1](https://codepen.io/gavra/pen/upHzg)
+- [404 Page](https://codepen.io/saransh/pen/aezht)
   - 404 page...
-- [404 Page #2](https://codepen.io/saransh/pen/aezht)
-  - 404 page...
+
+### Stack Overflow
+- [Stack Overflow](https://stackoverflow.com/)
+  - for the problem solving
 
 ---
 

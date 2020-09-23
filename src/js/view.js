@@ -384,7 +384,7 @@ function generateLineChart(data, colors) {
             display: true,
             scaleLabel: {
               display: true,
-              labelString: "Number",
+              labelString: "Preferences",
             },
           },
         ],
