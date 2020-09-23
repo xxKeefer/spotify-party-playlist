@@ -68,7 +68,7 @@ function generateList(dataArray) {
   let data = chart.filterByCommonArtists(dataArray);
   generateCharts(data);
 
-  document.getElementById("playlist-header").textContent = `${data.length} Bangers Found!`;
+  document.getElementById("playlist-header").textContent = `${(data.length > 0) ? data.length : "No"} Bangers Found!`;
 
   if (data.length < 1) {
     let item = document.createElement("li");
