@@ -173,7 +173,6 @@ const processApiData = async (userId) => {
     console.log({ tracks });
     return tracks;
   } catch (e) {
-    console.error(e);
-    return e;
+    return { error: "No Tracks", msg: `Did not receive track data.` };
   }
 };
