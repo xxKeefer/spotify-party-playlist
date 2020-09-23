@@ -9,7 +9,6 @@ export function getUserInputs() {
   return arr.map((el) => el.value);
 }
 
-
 export default async () => {
   let userArray = getUserInputs();
   let apiCalls = [];
@@ -19,6 +18,11 @@ export default async () => {
       apiCalls.push(processApiData(user));
     });
     const userDataArray = await Promise.all(apiCalls);
+    for (let res of userDataArray) {
+      if (res.hasOwnProperty("error")) {
+        return res;
+      }
+    }
     return userDataArray;
   } catch (e) {
     console.error(e);
