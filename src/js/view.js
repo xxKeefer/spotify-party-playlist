@@ -68,6 +68,8 @@ function generateList(dataArray) {
   let data = chart.filterByCommonArtists(dataArray);
   generateCharts(data);
 
+  document.getElementById("playlist-header").textContent = `${data.length} Bangers Found!`;
+
   if (data.length < 1) {
     let item = document.createElement("li");
     item.classList.add("list-group-item", "row");
@@ -152,7 +154,7 @@ async function generatePlaylist() {
     return
   }
 
-  console.log({ data });
+  console.log(data);
 
   setTimeout(() => {
     if (generateList(data)) {
@@ -177,6 +179,7 @@ async function generatePlaylist() {
 }
 
 function showHomePage() {
+  document.getElementById("playlist-header").textContent = "";
   hideElement("playlist-cont");
   hideElement("chart-cont");
   hideElement("not-found");
