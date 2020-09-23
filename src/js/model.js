@@ -173,6 +173,6 @@ const processApiData = async (userId) => {
     console.log({ tracks });
     return tracks;
   } catch (e) {
-    return { error: "No Tracks", msg: `Did not receive track data.` };
+    return { error: "No Tracks", msg: `Error: Did not receive track data from at least 1 user. Please ensure all User ID's are correct and that the 'publicLiked' playlists contain track data.` };
   }
 };

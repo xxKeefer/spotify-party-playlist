@@ -146,6 +146,12 @@ async function generatePlaylist() {
 
   let data = await playlistData();
 
+  if (data.hasOwnProperty('error')) {
+    alert(data.msg)
+    showHomePage()
+    return
+  }
+
   console.log({ data });
 
   setTimeout(() => {
@@ -173,9 +179,10 @@ async function generatePlaylist() {
 function showHomePage() {
   hideElement("playlist-cont");
   hideElement("chart-cont");
+  hideElement("not-found");
+  hideElement('loading-cont')
   showElement("home-page-cont");
   showElement("form-cont");
-  hideElement("not-found");
   // let userInputs = document.getElementsByClassName()
   for (let i = 1; i < userCount; i++) {
     let input = document.getElementById(`user-input-${i}`)
