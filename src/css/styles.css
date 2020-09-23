@@ -71,4 +71,8 @@ body .footer .container .footer-social-icons {
 .container .wrapper #right-cont #loadingPlaylistGif {
   width: 10%;
 }
+
+.container .wrapper #right-cont #home-page-cont .tutorial-photos {
+  width: 50%;
+}
 /*# sourceMappingURL=styles.css.map */
