@@ -106,7 +106,7 @@ const getPlaylistItems = async (endpointUrl) => {
         break;
       }
     } catch (e) {
-      console.error({ e });
+      // console.error({ e });
       break;
     }
   }
@@ -170,7 +170,7 @@ const processApiData = async (userId) => {
     console.log({ tracks });
     return tracks;
   } catch (e) {
-    console.error(e);
+    // console.error(e);
     return e;
   }
 };
