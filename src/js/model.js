@@ -70,15 +70,15 @@ const getPlaylistId = async (
     }
     return playlistEndpoint;
   } catch (e) {
-    return {
-      error: "No Playlist",
-      msg: `Could not locate playlist for user.`,
-    };
+    console.error(e);
   }
 };
 
 // This functions gets all the tracks from a playlist and returns them in a array
 const getPlaylistItems = async (endpointUrl) => {
+  if (endpointUrl.hasOwnProperty("error")) {
+    return endpointUrl;
+  }
   let auth = await getAuthToken();
   var myHeaders = new Headers();
 
@@ -109,10 +109,8 @@ const getPlaylistItems = async (endpointUrl) => {
         break;
       }
     } catch (e) {
-      return {
-        error: "Lost Playlist",
-        msg: `Located playlist for user, but something went wrong.`,
-      };
+      console.error({ e });
+      break;
     }
   }
   return allItems;
@@ -138,7 +136,7 @@ const getDisplayName = async (userId) => {
 
     return res.display_name;
   } catch (e) {
-    return { error: "No User", msg: `Could not locate user.` };
+    console.error(e);
   }
 };
 
@@ -175,6 +173,6 @@ const processApiData = async (userId) => {
     console.log({ tracks });
     return tracks;
   } catch (e) {
-    return { error: "Whoops", msg: `Something went wrong.` };
+    return { error: "No Tracks", msg: `Did not receive track data.` };
   }
 };
