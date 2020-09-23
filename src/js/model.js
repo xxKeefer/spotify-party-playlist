@@ -1,10 +1,10 @@
 // AUTHORIZATION
 // this function calls the token endpoint to generate an access token
+const { superSecret } = process.env;
 
 const getAuthToken = async () => {
   // a 64bit encoded "client_id:client_secret"
-  const encodedSecret =
-    "YWQxYjIzNzIyNTNiNDgyMmI0ZGIyNTE2MzBjZjM3Yjc6ZWY4NDI4ZmVlZWJhNDE1NDhhYTk4Y2RjNzI2YzAzNjc=";
+  const encodedSecret = superSecret;
 
   var myHeaders = new Headers();
   myHeaders.append("Authorization", "Basic " + encodedSecret);
