@@ -76,6 +76,9 @@ const getPlaylistId = async (
 
 // This functions gets all the tracks from a playlist and returns them in a array
 const getPlaylistItems = async (endpointUrl) => {
+  if (endpointUrl.hasOwnProperty("error")) {
+    return endpointUrl;
+  }
   let auth = await getAuthToken();
   var myHeaders = new Headers();
 
